@@ -155,3 +155,4 @@ p.si { color: #5A6075; }
 .res-feature-art span { padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line-navy); font-weight: 700; color: var(--on-navy); }
 .res-feature-art strong { position: absolute; right: 18px; bottom: 6px; font-family: var(--bold); font-size: 96px; line-height: 1; color: var(--yellow); opacity: .9; }
 .guide:not(a) img { opacity: .75; }
+.toolkit .res-feature { margin-bottom: 0; }

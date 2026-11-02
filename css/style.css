@@ -366,6 +366,8 @@ h1, h2, h3 { text-wrap: balance; }
 .jump span { font-family: var(--bold); font-size: 18px; color: var(--yellow); }
 
 .prog-section { scroll-margin-top: 16px; }
+.prog-facts .prog-link { display: inline-block; margin-top: 14px; padding: 6px 0; }
+.band--navy .prog-facts .prog-link { color: var(--yellow); }
 /* Banners keep their own shape: Business Therapy's is a wide strip (1893 × 296), the others are 3:1 */
 .prog-banner { width: 100%; height: auto; border-radius: 20px; }
 .prog-banner--strip { border-radius: 4px; }
