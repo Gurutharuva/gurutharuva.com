@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{% if page.title %}{{ page.title }} | {% endif %}Gurutharuva Journal</title>
+<title>{% if page.title %}{{ page.title }} | {% endif %}Gurutharuva</title>
 <meta name="description" content="{{ page.summary | default: page.description | default: site.description | strip_html | escape }}">
 {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
 <link rel="icon" href="{{ "/assets/img/logo.png" | relative_url }}">
@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gloock&family=Figtree:wght@400;500;600;700;800&family=Noto+Serif+Sinhala:wght@400;600&display=swap">
 <link rel="stylesheet" href="{{ "/css/style.css" | relative_url }}">
+{% if page.css %}<link rel="stylesheet" href="{{ page.css | relative_url }}">{% endif %}
 </head>
 <body>
 
@@ -22,7 +23,7 @@
     </a>
     <nav class="main-nav" id="main-nav" aria-label="Main">
       <a href="{{ "/programs/" | relative_url }}">Programmes</a>
-      <a href="{{ "/" | relative_url }}free-guides-pdfs/">Free Guides</a>
+      <a href="{{ "/resources/" | relative_url }}"{% if page.url contains "/resources/" %} aria-current="page"{% endif %}>Resources</a>
       <a href="{{ "/journal/" | relative_url }}"{% if page.url contains "/journal/" %} aria-current="page"{% endif %}>Journal</a>
       <a href="{{ "/" | relative_url }}publications/">Publications</a>
     </nav>
@@ -82,5 +83,6 @@
 </footer>
 
 <script src="{{ "/js/main.js" | relative_url }}"></script>
+{% if page.js %}<script src="{{ page.js | relative_url }}"></script>{% endif %}
 </body>
 </html>
