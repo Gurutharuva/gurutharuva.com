@@ -244,6 +244,9 @@ h1, h2, h3 { text-wrap: balance; }
   line-height: 1;
 }
 .pillars-title span { color: var(--gold-text); }
+.motto .pillars-title { margin: 0; font-family: var(--bold); font-size: clamp(40px, 5vw, 72px); line-height: 1; color: var(--navy); }
+.motto .pillars-title span { color: var(--navy); }
+.motto-eyebrow { margin: 0 0 12px; font-size: 13px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--navy); }
 /* Programme cards: square logo, then details, one row of three */
 .programs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
 @media (max-width: 900px) { .programs { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
