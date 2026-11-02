@@ -99,6 +99,15 @@ h1, h2, h3 { text-wrap: balance; }
 .btn svg { width: 20px; height: 20px; flex: none; }
 .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
 
+/* Announcement bar */
+.announce { display: flex; min-height: 44px; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px 14px; padding: 12px var(--gutter); background: #E2D35C; color: var(--navy); text-decoration: none; text-align: center; font-size: 16px; line-height: 1.3; }
+.announce-tag { padding: 3px 10px; border-radius: 999px; background: var(--navy); color: #E2D35C; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.announce-text strong { font-weight: 800; }
+.announce-arrow { width: 32px; height: 16px; flex: none; transition: transform .2s ease; }
+.announce:hover .announce-arrow, .announce:focus-visible .announce-arrow { transform: translateX(5px); }
+.announce:focus-visible { outline: 3px solid var(--navy); outline-offset: -3px; }
+@media (max-width: 520px) { .announce { flex-wrap: nowrap; gap: 10px; font-size: 14px; text-align: left; } .announce-arrow { width: 26px; } }
+
 /* Header */
 .site-header { background: var(--navy); color: var(--on-navy); padding: 0 var(--gutter); }
 .site-header .wrap {
