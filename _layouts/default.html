@@ -22,7 +22,15 @@
       <span><b>Gurutharuva</b><small>ගුරුතරුව</small></span>
     </a>
     <nav class="main-nav" id="main-nav" aria-label="Main">
-      <a href="{{ "/programs/" | relative_url }}">Programmes</a>
+      <div class="nav-group">
+        <a class="nav-parent" href="{{ "/programs/" | relative_url }}">Programmes</a>
+        <div class="nav-sub">
+          <a href="{{ "/programs/mirror-clinic/" | relative_url }}">Mirror Clinic</a>
+          <a href="{{ "/programs/business-therapy/" | relative_url }}">Business Therapy</a>
+          <a href="{{ "/programs/wealth-code/" | relative_url }}">Wealth Code</a>
+          <a href="{{ "/programs/#coaching" | relative_url }}">1-to-1 Coaching</a>
+        </div>
+      </div>
       <a href="{{ "/resources/" | relative_url }}"{% if page.url contains "/resources/" %} aria-current="page"{% endif %}>Resources</a>
       <a href="{{ "/journal/" | relative_url }}"{% if page.url contains "/journal/" %} aria-current="page"{% endif %}>Journal</a>
       <a href="{{ "/" | relative_url }}publications/">Publications</a>
