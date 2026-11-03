@@ -89,16 +89,16 @@ h2 { font-size: clamp(30px, 4.4vw, 46px); }
 .hero h1 em { font-style: normal; color: var(--accent); }
 .hero .lede { color: var(--hero-soft); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; padding: 8px; background: var(--hero-card); border: 1px solid var(--line); border-radius: 22px; }
-.facts .n { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 6px; padding: 22px 12px 20px; text-align: center; }
-.facts .n + .n { border-left: 1px solid var(--line); }
-.facts .n dd { margin: 0; font-family: var(--bold); font-size: clamp(40px, 5vw, 56px); line-height: 1; letter-spacing: .02em; color: var(--accent); }
-.facts .n dt { font-size: 13px; line-height: 1.3; color: var(--hero-soft); }
-.facts .m { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 14px 16px; border-top: 1px solid var(--line); }
-.facts .m dt { flex: none; font-size: 14px; color: var(--hero-soft); }
-.facts .m dd small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--hero-soft); }
-.facts .m dd { margin: 0; font-size: 15px; font-weight: 700; color: var(--hero-fg); text-align: right; }
-:root[data-lang="si"] .facts .m dd { font-family: var(--sinhala); }
+.facts { display: grid; margin: 0; padding: 6px 28px; background: var(--hero-card); border: 1px solid var(--line); border-radius: 22px; }
+.facts div { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; padding: 12px 0; }
+.facts div + div { border-top: 1px solid var(--line); }
+.facts dt { flex: none; font-size: 14px; color: var(--hero-soft); }
+.facts dd { margin: 0; text-align: right; font-family: var(--sans); font-size: 17px; font-weight: 700; line-height: 1.25; color: var(--accent); }
+.facts dd.big { font-family: var(--bold); font-size: 32px; font-weight: 400; letter-spacing: .02em; line-height: 1; }
+.facts dd small { font-family: var(--sans); font-size: 15px; font-weight: 700; letter-spacing: 0; color: var(--accent); }
+.facts dd em { display: block; margin-top: 3px; font-style: normal; font-size: 13px; font-weight: 500; color: var(--hero-soft); }
+:root[data-lang="si"] .facts dd, :root[data-lang="si"] .facts dd small { font-family: var(--sinhala); }
+:root[data-lang="si"] .facts dd.big { font-family: var(--bold); }
 
 /* path */
 .path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -342,12 +342,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         </div>
       </div>
       <dl class="facts">
-        <div class="n"><dt><span class="en">Live sessions</span><span class="si">සජීවී සැසි</span></dt><dd>4</dd></div>
-        <div class="n"><dt><span class="en">Live hours</span><span class="si">සජීවී පැය</span></dt><dd>12</dd></div>
-        <div class="n"><dt><span class="en">Seats per batch</span><span class="si">එක් කණ්ඩායමකට ආසන</span></dt><dd>30</dd></div>
-        <div class="m"><dt><span class="en">Language</span><span class="si">භාෂාව</span></dt><dd><span class="en">Sinhala &amp; English</span><span class="si">සිංහල සහ ඉංග්‍රීසි</span></dd></div>
-        <div class="m"><dt><span class="en">Where</span><span class="si">කොහේද</span></dt><dd><span class="en">Live on Zoom</span><span class="si">Zoom හරහා සජීවීව</span></dd></div>
-        <div class="m"><dt><span class="en">Taught live by</span><span class="si">සජීවීව උගන්වන්නේ</span></dt><dd>Darshana Godawaththa<small><span class="en">Certified NLP coach &amp; entrepreneur</span><span class="si">සහතික NLP පුහුණුකරු සහ ව්‍යවසායකයෙක්</span></small></dd></div>
+        <div><dt><span class="en">Live sessions</span><span class="si">සජීවී සැසි</span></dt><dd class="big">4</dd></div>
+        <div><dt><span class="en">Live teaching</span><span class="si">සජීවී ඉගැන්වීම</span></dt><dd class="big">12 <small><span class="en">hours</span><span class="si">පැය</span></small></dd></div>
+        <div><dt><span class="en">Seats per batch</span><span class="si">එක් කණ්ඩායමකට ආසන</span></dt><dd class="big">30</dd></div>
+        <div><dt><span class="en">Language</span><span class="si">භාෂාව</span></dt><dd><span class="en">Sinhala &amp; English</span><span class="si">සිංහල සහ ඉංග්‍රීසි</span></dd></div>
+        <div><dt><span class="en">Where</span><span class="si">කොහේද</span></dt><dd><span class="en">Live on Zoom</span><span class="si">Zoom හරහා සජීවීව</span></dd></div>
+        <div><dt><span class="en">Taught live by</span><span class="si">සජීවීව උගන්වන්නේ</span></dt><dd>Darshana Godawaththa<em><span class="en">Certified NLP coach &amp; entrepreneur</span><span class="si">සහතික NLP පුහුණුකරු සහ ව්‍යවසායකයෙක්</span></em></dd></div>
       </dl>
     </div>
     <ol class="flow" aria-label="The four weeks">
