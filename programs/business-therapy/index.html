@@ -1,193 +1,837 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Business Therapy | Gurutharuva</title>
-<meta name="description" content="A 4-week live programme by Darshana Godawaththa that takes you from business idea to registration, website and first customer, in Sinhala and English.">
-<link rel="icon" href="../../assets/img/logo.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Business Therapy Start: four live sessions from business idea to first customer. By Darshana Godawaththa, Gurutharuva.">
+<title>Business Therapy Start</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Gloock&family=Figtree:wght@400;500;600;700;800&family=Noto+Serif+Sinhala:wght@400;600&display=swap">
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Figtree:wght@400;500;600;700;800&family=Gloock&family=Noto+Serif+Sinhala:wght@400;600;700&display=swap">
+<style>
+/* Layout concept: one long single-column read on a navy field. A big outlined numeral marks each live session; the four sessions are the spine of the page. Every string exists in English (.en) and Sinhala (.si); a switch in the header picks one. */
+:root {
+  --bg: #131A2B;
+  --surface: #1C2540;
+  --surface-2: #0E1422;
+  --fg: #EDEBE3;
+  --fg-soft: #B9BDCB;
+  --line: #2E3755;
+  --accent: #E0D45C;
+  --accent-ink: #131A2B;
+  --accent-text: #E0D45C;
+  --gold: #BCA466;
+  --hero-bg: #0E1422;
+  --hero-fg: #EDEBE3;
+  --hero-soft: #B9BDCB;
+  --hero-card: #1C2540;
+  --display: Gloock, Georgia, serif;
+  --bold: Anton, Impact, "Arial Narrow", sans-serif;
+  --sans: Figtree, "Segoe UI", system-ui, sans-serif;
+  --sinhala: "Noto Serif Sinhala", "Iskoola Pota", "Nirmala UI", serif;
+  --wrap: 1120px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #FFFFFF; --surface: #F7F3D6; --surface-2: #EFEAC4; --fg: #131A2B; --fg-soft: #4A5168;
+    --line: #E4E1D2; --accent: #E0D45C; --accent-ink: #131A2B; --accent-text: #8A7433; --gold: #8A7433;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #FFFFFF; --surface: #F7F3D6; --surface-2: #EFEAC4; --fg: #131A2B; --fg-soft: #4A5168;
+  --line: #E4E1D2; --accent: #E0D45C; --accent-ink: #131A2B; --accent-text: #8A7433; --gold: #8A7433;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font-family: var(--sans); font-size: 17px; line-height: 1.6;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* language switch: English is the default; Sinhala shows when data-lang="si" */
+:root:not([data-lang="si"]) .si { display: none; }
+:root[data-lang="si"] .en { display: none; }
+:root[data-lang="si"] body { font-family: var(--sinhala); line-height: 1.85; }
+:root[data-lang="si"] h1, :root[data-lang="si"] h2, :root[data-lang="si"] h3, :root[data-lang="si"] .pull, :root[data-lang="si"] blockquote { font-family: var(--sinhala); font-weight: 700; line-height: 1.4; }
+:root[data-lang="si"] .hero h1 { font-size: clamp(32px, 5vw, 56px); }
+:root[data-lang="si"] .eyebrow, :root[data-lang="si"] .tag, :root[data-lang="si"] h4, :root[data-lang="si"] .chip, :root[data-lang="si"] .btn, :root[data-lang="si"] summary { letter-spacing: 0; text-transform: none; font-family: var(--sinhala); }
+
+.wrap {
+  max-width: calc(var(--wrap) + 64px); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: 72px; }
+section.alt { background: var(--surface-2); }
+.eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+.lede { font-size: 19px; color: var(--fg-soft); max-width: 62ch; }
+h2 { font-size: clamp(30px, 4.4vw, 46px); }
+.sec-head { display: grid; gap: 14px; margin-bottom: 40px; }
+
+/* header */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 12px 16px; flex-wrap: wrap; padding-block: 20px; }
+.brand { display: flex; align-items: baseline; gap: 10px; text-decoration: none; }
+.brand b { font-family: var(--display); font-weight: 400; font-size: 22px; }
+.brand i { font-style: normal; font-family: var(--sinhala); font-size: 15px; color: var(--hero-soft); }
+.top-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.lang { display: inline-flex; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); padding: 3px; }
+.lang button { background: transparent; color: var(--hero-soft); border: 0; border-radius: 999px; padding: 8px 14px; font: 700 13px var(--sans); cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-align: center;
+  background: var(--accent); color: var(--accent-ink); font: 700 16px/1.2 var(--sans);
+  padding: 16px 24px; border-radius: 999px; text-decoration: none; border: 0; cursor: pointer;
+}
+.btn:hover { filter: brightness(1.06); }
+.btn.ghost { background: transparent; color: var(--hero-fg); box-shadow: inset 0 0 0 2px var(--line); }
+.btn.small { padding: 12px 18px; font-size: 14px; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); padding-bottom: 80px; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 56px; align-items: center; padding-top: 56px; }
+.hero h1 { font-size: clamp(40px, 6.4vw, 76px); margin-block: 18px 24px; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.hero .lede { color: var(--hero-soft); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+.facts { display: grid; gap: 0; border-top: 1px solid var(--line); margin: 0; }
+.facts div { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.facts dt { font-size: 14px; color: var(--hero-soft); }
+.facts dd { margin: 0; font-family: var(--bold); font-size: 34px; letter-spacing: .02em; color: var(--accent); text-align: right; }
+.facts dd small { font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--hero-fg); letter-spacing: 0; }
+:root[data-lang="si"] .facts dd small { font-family: var(--sinhala); }
+
+/* path */
+.path { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.stage { padding: 28px; border-radius: 16px; background: var(--surface); display: grid; gap: 10px; align-content: start; }
+.stage .tag { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+.stage h3 { font-size: 34px; }
+.stage p { color: var(--fg-soft); font-size: 16px; }
+.stage.here { background: var(--accent); color: var(--accent-ink); }
+.stage.here .tag, .stage.here p { color: var(--accent-ink); }
+.stage.later { background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+
+/* premise */
+.premise { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.premise blockquote { margin: 16px 0 0; font-family: var(--display); font-size: clamp(26px, 3.4vw, 38px); line-height: 1.25; color: var(--fg); }
+.premise cite { display: block; margin-top: 18px; font: 600 14px var(--sans); color: var(--accent-text); letter-spacing: .08em; text-transform: uppercase; }
+:root[data-lang="si"] .premise cite { font-family: var(--sinhala); letter-spacing: 0; text-transform: none; }
+.split { display: grid; gap: 14px; }
+.split > div { padding: 22px 24px; border-radius: 14px; background: var(--surface); }
+.split .t { display: block; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 6px; }
+:root[data-lang="si"] .split .t { letter-spacing: 0; text-transform: none; font-size: 14px; }
+
+/* sessions */
+.sessions { display: grid; gap: 28px; }
+.session { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 32px; padding-top: 28px; border-top: 1px solid var(--line); }
+.num { font-family: var(--bold); font-size: 140px; line-height: .9; color: transparent; -webkit-text-stroke: 2px var(--accent-text); }
+.session-meta { display: grid; gap: 4px; margin-top: 8px; }
+.session-meta .d { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+.session-meta .h { color: var(--fg-soft); font-size: 14px; }
+:root[data-lang="si"] .session-meta .d { letter-spacing: 0; text-transform: none; }
+.session h3 { font-size: clamp(28px, 3.4vw, 40px); }
+.session .q { color: var(--fg-soft); font-style: italic; margin-top: 8px; font-size: 18px; }
+:root[data-lang="si"] .session .q { font-style: normal; }
+.cols { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 20px; margin-top: 24px; }
+.panel { padding: 24px; border-radius: 14px; background: var(--surface); display: grid; gap: 12px; align-content: start; }
+.panel h4 { margin: 0; font: 700 12px var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+:root[data-lang="si"] .panel h4 { font-size: 14px; }
+.panel ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.panel li { position: relative; padding-left: 22px; font-size: 16px; }
+.panel li::before { content: ""; position: absolute; left: 0; top: .6em; width: 9px; height: 9px; background: var(--accent-text); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.panel.leave { background: var(--accent); color: var(--accent-ink); }
+.panel.leave h4 { color: var(--accent-ink); }
+.panel.leave li::before { background: var(--accent-ink); }
+.between { margin-top: 16px; padding: 16px 20px; border-radius: 12px; box-shadow: inset 0 0 0 1px var(--line); font-size: 15px; color: var(--fg-soft); }
+.between b { color: var(--fg); }
+
+/* session shape */
+.shape { display: grid; grid-template-columns: 30fr 60fr 75fr 15fr; gap: 6px; }
+.shape > div { padding: 16px; border-radius: 12px; background: var(--surface); display: grid; gap: 4px; align-content: start; min-width: 0; }
+.shape > div:nth-child(3) { background: var(--accent); color: var(--accent-ink); }
+.shape .n { font-family: var(--bold); font-size: 28px; letter-spacing: .02em; line-height: 1.2; }
+.shape .t { font-size: 14px; line-height: 1.5; }
+.note { margin-top: 16px; color: var(--fg-soft); font-size: 15px; }
+
+/* cards */
+.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card { padding: 24px; border-radius: 14px; background: var(--surface); display: grid; gap: 8px; align-content: start; }
+.card h3 { font-size: 22px; }
+.card p { color: var(--fg-soft); font-size: 16px; }
+.inline-cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.inline-cta p { color: var(--fg-soft); }
+
+/* fit */
+.fit { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.fit > div { padding: 24px; border-radius: 14px; background: var(--surface); display: grid; gap: 14px; align-content: start; }
+.chip { justify-self: start; padding: 8px 14px; border-radius: 999px; font: 700 13px var(--sans); letter-spacing: .1em; text-transform: uppercase; }
+.chip.yes { background: var(--accent); color: var(--accent-ink); }
+.chip.maybe { background: var(--gold); color: #131A2B; }
+.chip.no { background: var(--fg); color: var(--bg); }
+.fit ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; font-size: 16px; }
+
+/* mentor */
+.mentor { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: 48px; align-items: start; }
+.mentor p { color: var(--fg-soft); }
+.mentor p + p { margin-top: 14px; }
+.mentor h3 { font-size: 34px; margin: 12px 0 16px; }
+.creds { display: grid; gap: 8px; }
+.creds .cred { padding: 12px 16px; border-radius: 10px; background: var(--surface); font-size: 15px; font-weight: 600; }
+.mentor .pull { margin: 28px 0 0; font-family: var(--display); font-size: 24px; line-height: 1.3; color: var(--fg); }
+
+/* faq */
+.faq { display: grid; gap: 10px; max-width: 820px; }
+details { border-radius: 12px; background: var(--surface); }
+summary { cursor: pointer; list-style: none; padding: 20px 24px; font-weight: 700; display: flex; justify-content: space-between; gap: 16px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; font-size: 22px; line-height: 1; color: var(--accent-text); }
+details[open] summary::after { content: "\2212"; }
+details p { padding: 0 24px 22px; color: var(--fg-soft); }
+
+/* cta */
+.cta { background: var(--hero-bg); color: var(--hero-fg); padding-block: 80px; }
+.cta-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+.cta h2 { font-size: clamp(32px, 5vw, 56px); margin-top: 14px; }
+.cta p { color: var(--hero-soft); margin-top: 16px; max-width: 52ch; }
+.price { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.price b { font-family: var(--bold); font-size: 72px; font-weight: 400; color: var(--accent); line-height: 1; }
+.price .u { color: var(--hero-soft); }
+.contact { margin-top: 24px; display: grid; gap: 10px; font-size: 16px; }
+.contact > div { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; color: var(--hero-fg); }
+.contact code { font: 600 16px var(--sans); user-select: all; overflow-wrap: anywhere; }
+.copy { background: transparent; color: var(--hero-soft); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font: 600 12px var(--sans); cursor: pointer; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 28px; }
+
+footer { padding-block: 40px 56px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--fg-soft); font-size: 14px; }
+footer .sin { font-family: var(--sinhala); font-size: 16px; color: var(--accent-text); }
+
+
+/* sticky bar */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--hero-bg); }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--hero-bg); color: var(--hero-fg); border-bottom: 1px solid var(--hero-card); }
+.bar .top { padding-block: 12px; }
+.nav { display: flex; gap: 26px; }
+.nav a { color: var(--hero-soft); text-decoration: none; font-size: 14px; font-weight: 600; }
+.nav a:hover { color: var(--accent); }
+
+/* hero extras */
+.proof { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 10px; color: var(--hero-fg); font-size: 16px; }
+.proof li { position: relative; padding-left: 26px; }
+.proof li::before { content: ""; position: absolute; left: 0; top: .5em; width: 12px; height: 12px; background: var(--accent); clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); }
+.flow { list-style: none; margin: 56px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.flow li { position: relative; padding: 18px 20px; border-radius: 14px; background: var(--hero-card); display: grid; gap: 2px; align-content: start; }
+.flow .w { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.flow .s { font-family: var(--display); font-size: 26px; line-height: 1.2; color: var(--hero-fg); }
+.flow .x { font-size: 14px; color: var(--hero-soft); }
+.flow li:not(:last-child)::after { content: "\2192"; position: absolute; right: -17px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: var(--hero-bg); color: var(--accent); font-size: 16px; z-index: 1; }
+:root[data-lang="si"] .flow .w { letter-spacing: 0; text-transform: none; font-size: 14px; }
+:root[data-lang="si"] .flow .s { font-family: var(--sinhala); font-weight: 700; font-size: 22px; }
+
+/* doubts */
+.doubts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.doubt { padding: 24px; border-radius: 14px; background: var(--surface); display: grid; gap: 14px; align-content: start; }
+.doubt .qt { font-family: var(--display); font-size: 22px; line-height: 1.3; color: var(--fg); }
+.doubt .a { color: var(--fg-soft); font-size: 15px; }
+.doubt .a b { color: var(--accent-text); }
+:root[data-lang="si"] .doubt .qt { font-family: var(--sinhala); font-weight: 700; font-size: 19px; line-height: 1.5; }
+
+/* steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.steps li { padding: 24px; border-radius: 14px; background: var(--surface); display: grid; gap: 8px; align-content: start; }
+.steps .n { font-family: var(--bold); font-size: 44px; line-height: 1; color: var(--accent-text); }
+.steps h3 { font-size: 22px; }
+.steps p { color: var(--fg-soft); font-size: 16px; }
+
+/* included stack */
+.stack { display: grid; border-top: 1px solid var(--line); max-width: 820px; }
+.stack > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: baseline; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.stack .h { display: block; font-size: 17px; font-weight: 700; }
+.stack .d { display: block; color: var(--fg-soft); font-size: 15px; }
+.stack .ok { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); }
+:root[data-lang="si"] .stack .ok { letter-spacing: 0; text-transform: none; }
+.sum { max-width: 820px; margin-top: 20px; padding: 22px 26px; border-radius: 14px; background: var(--accent); color: var(--accent-ink); display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 12px 20px; }
+.sum .l { font-weight: 700; font-size: 17px; }
+.sum .p { font-family: var(--bold); font-size: 44px; line-height: 1; }
+
+/* speech-bubble doubts */
+.doubt { background: transparent; padding: 0; gap: 18px; }
+.doubt .qt { position: relative; padding: 20px 22px; border-radius: 18px 18px 18px 4px; background: var(--surface); }
+.doubt .qt::after { content: ""; position: absolute; left: 22px; bottom: -10px; border: 10px solid transparent; border-top-color: var(--surface); border-bottom: 0; }
+.doubt .a { padding-left: 6px; }
+
+/* illustrated worksheet mockups */
+.mocks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.mock { display: grid; gap: 16px; align-content: start; }
+.sheet { position: relative; border-radius: 16px; background: var(--bg); box-shadow: 0 0 0 1px var(--line), 0 14px 30px rgba(0,0,0,.18); padding: 14px 14px 10px; }
+.sheet .tabs { display: flex; gap: 6px; margin-bottom: 8px; }
+.sheet .tabs i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.sheet .tag { position: absolute; top: 10px; right: 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text); }
+:root[data-lang="si"] .sheet .tag { letter-spacing: 0; text-transform: none; font-size: 12px; }
+.sheet svg { display: block; width: 100%; height: auto; }
+.mock h3 { font-size: 22px; }
+.mock .wk { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+:root[data-lang="si"] .mock .wk { letter-spacing: 0; text-transform: none; font-size: 14px; }
+.mock p { color: var(--fg-soft); font-size: 16px; }
+.ill text { font-family: var(--sans); font-size: 11px; fill: var(--fg-soft); }
+:root[data-lang="si"] .ill text { font-family: var(--sinhala); }
+.ill .strong { fill: var(--fg); font-weight: 700; }
+.ill .acc { fill: var(--accent); }
+.ill .accs { stroke: var(--accent-text); }
+.ill .ink { fill: var(--accent-ink); font-weight: 700; }
+.ill .ln { stroke: var(--line); fill: none; stroke-width: 1.2; }
+.ill .bar { fill: var(--line); }
+.ill .soft { fill: var(--surface); }
+
+.goals { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 36px; }
+.goals .gl { font-weight: 700; margin-right: 6px; }
+.goals .pill { padding: 10px 16px; border-radius: 999px; background: var(--surface); font-size: 15px; font-weight: 600; }
+
+/* mobile booking bar */
+.mbar { display: none; }
+
+@media (max-width: 900px) {
+  section { padding-block: 56px; }
+  .nav { display: none; }
+  .doubts, .steps, .mocks { grid-template-columns: minmax(0, 1fr); }
+  .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow li:not(:last-child)::after { display: none; }
+  .mbar { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 25; background: var(--hero-bg); border-top: 1px solid var(--hero-card); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+  .mbar .btn { width: 100%; }
+  footer { padding-bottom: 110px; }
+  .hero-grid, .premise, .mentor, .cta-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .path, .grid3, .fit { grid-template-columns: minmax(0, 1fr); }
+  .session { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .num { font-size: 96px; }
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .shape { grid-template-columns: minmax(0, 1fr); }
+  .price b { font-size: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+<style>html{color-scheme:dark} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="../../">
-      <img src="../../assets/img/logo.png" alt="">
-      <span><b>Gurutharuva</b><small>ගුරුතරුව</small></span>
-    </a>
-    <nav class="main-nav" id="main-nav" aria-label="Main">
-      <div class="nav-group">
-        <a class="nav-parent" href="../">Education</a>
-        <div class="nav-sub">
-          <a href="../mirror-clinic/">Mirror Clinic</a>
-          <a href="../business-therapy/" aria-current="page">Business Therapy</a>
-          <a href="../business-therapy/start/">Business Therapy: Start</a>
-          <a href="../wealth-code/">Wealth Code</a>
+<header class="bar">
+  <div class="wrap top">
+      <a class="brand" href="../../"><b>Gurutharuva</b><i>ගුරුතරුව</i></a>
+      <nav class="nav" aria-label="Page sections"><a href="#sessions"><span class="en">The sessions</span><span class="si">සැසි</span></a><a href="#included"><span class="en">What is included</span><span class="si">ඇතුළත් දේ</span></a><a href="#faq"><span class="en">Questions</span><span class="si">ප්‍රශ්න</span></a><a href="../"><span class="en">All programmes</span><span class="si">සියලු වැඩසටහන්</span></a></nav>
+      <div class="top-right">
+        <div class="lang" role="group" aria-label="Language">
+          <button type="button" id="lang-en" aria-pressed="true">EN</button>
+          <button type="button" id="lang-si" aria-pressed="false">සිං</button>
         </div>
+        <a class="btn small" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat</span><span class="si">ආසනය වෙන් කරගන්න</span></a>
       </div>
-      <a href="../../resources/">Resources</a>
-      <a href="../../journal/">Journal</a>
-      <a href="../../publications/">Publications</a>
-    </nav>
-    <a class="btn btn--yellow header-cta" href="https://wa.me/94715507060">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
-      <span>Talk on WhatsApp</span>
-    </a>
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
   </div>
 </header>
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-grid" id="top">
+      <div>
+        <div class="eyebrow"><span class="en">Business Therapy &middot; Stage 1 of 3 &middot; Start</span><span class="si">Business Therapy &middot; 3 න් 1 වන අදියර &middot; Start</span></div>
+        <h1><span class="en">From idea to <em>first customer</em> in four live sessions.</span><span class="si">අදහසක සිට <em>පළමු පාරිභෝගිකයා</em> දක්වා, සජීවී සැසි හතරකින්.</span></h1>
+        <p class="lede"><span class="en">Four live days of three hours each, one a week for four weeks. You change how you think in the first two, then build the business itself in the last two. You work on your own idea between sessions, so you finish with a real business and not a notebook of notes.</span><span class="si">සතියකට එක් සජීවී දිනයක්, පැය තුන බැගින්, සති හතරක් පුරා. මුල් සති දෙකේදී ඔයා හිතන විදිහ වෙනස් කරගන්නවා; අන්තිම සති දෙකේදී ව්‍යාපාරය ම ගොඩනඟනවා. සැසි අතර කාලයේදී ඔයාගේම අදහස මත වැඩ කරන නිසා, අවසානයේ ඔයාට ලැබෙන්නේ සටහන් පොතක් නෙවෙයි, සැබෑ ව්‍යාපාරයක්.</span></p>
+        <ul class="proof">
+          <li><span class="en">Taught live by Darshana Godawaththa, ABNLP-certified NLP coach</span><span class="si">සජීවීව උගන්වන්නේ ABNLP සහතික ලත් NLP පුහුණුකරු Darshana Godawaththa</span></li>
+          <li><span class="en">Limited to 30 seats, so you get real feedback</span><span class="si">ආසන 30කට පමණක් සීමා වෙලා, ඒ නිසා සැබෑ ප්‍රතිචාර ලැබෙනවා</span></li>
+          <li><span class="en">Sinhala and English, live on Zoom</span><span class="si">සිංහල සහ ඉංග්‍රීසි, Zoom එකෙන් සජීවීව</span></li>
+        </ul>
+        <div class="hero-actions">
+          <a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a>
+          <a class="btn ghost" href="#sessions"><span class="en">See the four sessions</span><span class="si">සැසි හතර බලන්න</span></a>
+        </div>
+      </div>
+      <dl class="facts">
+        <div><dt><span class="en">Live sessions</span><span class="si">සජීවී සැසි</span></dt><dd>4</dd></div>
+        <div><dt><span class="en">Live teaching</span><span class="si">සජීවී ඉගැන්වීම</span></dt><dd>12 <small><span class="en">hours</span><span class="si">පැය</span></small></dd></div>
+        <div><dt><span class="en">Seats per batch</span><span class="si">එක් කණ්ඩායමකට ආසන</span></dt><dd>30</dd></div>
+        <div><dt><span class="en">Language</span><span class="si">භාෂාව</span></dt><dd><small><span class="en">Sinhala &amp; English</span><span class="si">සිංහල සහ ඉංග්‍රීසි</span></small></dd></div>
+        <div><dt><span class="en">Where</span><span class="si">කොහේද</span></dt><dd><small><span class="en">Live on Zoom</span><span class="si">Zoom හරහා සජීවීව</span></small></dd></div>
+      </dl>
+    </div>
+    <ol class="flow" aria-label="The four weeks">
+      <li><span class="w"><span class="en">Week 1</span><span class="si">1 වන සතිය</span></span><span class="s"><span class="en">Find it</span><span class="si">සොයාගන්න</span></span><span class="x"><span class="en">The business that fits you</span><span class="si">ඔයාට ගැලපෙන ව්‍යාපාරය</span></span></li>
+      <li><span class="w"><span class="en">Week 2</span><span class="si">2 වන සතිය</span></span><span class="s"><span class="en">Rewire it</span><span class="si">වෙනස් කරන්න</span></span><span class="x"><span class="en">Your mindset and money beliefs</span><span class="si">ඔයාගේ මානසිකත්වය සහ මුදල් විශ්වාස</span></span></li>
+      <li><span class="w"><span class="en">Week 3</span><span class="si">3 වන සතිය</span></span><span class="s"><span class="en">Build it</span><span class="si">ගොඩනඟන්න</span></span><span class="x"><span class="en">Your offer and money model</span><span class="si">ඔයාගේ දීමනාව සහ මුදල් ආකෘතිය</span></span></li>
+      <li><span class="w"><span class="en">Week 4</span><span class="si">4 වන සතිය</span></span><span class="s"><span class="en">Sell it</span><span class="si">විකුණන්න</span></span><span class="x"><span class="en">Your first customer</span><span class="si">ඔයාගේ පළමු පාරිභෝගිකයා</span></span></li>
+    </ol>
+  </div>
+</div>
 
 <main>
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="eyebrow">Programmes · 02 · Your business · Enrolling now</p>
-      <h1>Business Therapy: <em>start, fix, grow.</em></h1>
-      <p class="intro">A 4-week live programme by Darshana Godawaththa that takes you from business idea to registration, website and first customer, in Sinhala and English.</p>
-      <p class="hero-cta"><a class="btn btn--yellow" href="start/">See Start: idea to first customer</a></p>
-      <nav class="jump" aria-label="Other programmes">
-        <a href="../mirror-clinic/"><span>01</span>Mirror Clinic</a>
-        <a href="../wealth-code/"><span>03</span>Wealth Code</a>
-        <a href="../"><span>+</span>All programmes</a>
-      </nav>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">Right now you might be thinking</span><span class="si">දැන් ඔයා හිතනවා ඇති</span></div>
+      <h2><span class="en">Sound familiar? Start is built for the very beginning.</span><span class="si">හුරු පුරුදුයි වගේද? Start හදලා තියෙන්නේ ඉතාම මුල් තැනටයි.</span></h2>
+      <p class="lede"><span class="en">If any of these sounds like you, you are in the right place. Each one has a session that answers it.</span><span class="si">මේවා අතරින් එකක් ඔයාට හිතෙනවා නම්, ඔයා ඉන්නේ හරි තැනේ. සෑම එකකටම පිළිතුරු දෙන සැසියක් තියෙනවා.</span></p>
     </div>
-  </section>
+    <div class="doubts">
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I don't know what business to start&rdquo;</span><span class="si">&ldquo;මොන ව්‍යාපාරයක් පටන් ගන්නද කියලා මම දන්නේ නැහැ&rdquo;</span></p><p class="a"><b><span class="en">Session 1.</span><span class="si">1 වන සැසිය.</span></b> <span class="en">The Holland Code and the seven idea methods match a business to who you are.</span><span class="si">Holland Code එකෙන් සහ අදහස් ක්‍රම හතෙන්, ව්‍යාපාරයක් ඔයා කවුද කියන එකට ගැලපෙනවා.</span></p></div>
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I have an idea but no idea where to start&rdquo;</span><span class="si">&ldquo;මට අදහසක් තියෙනවා, ඒත් පටන් ගන්න ඕන කොහෙන්ද කියලා දන්නේ නැහැ&rdquo;</span></p><p class="a"><b><span class="en">Sessions 1 and 3.</span><span class="si">1 සහ 3 වන සැසි.</span></b> <span class="en">Test it with real people, register it, then build an offer around it.</span><span class="si">සැබෑ මිනිසුන් එක්ක පරීක්ෂා කරන්න, ලියාපදිංචි කරන්න, ඉන්පසු ඒ වටා දීමනාවක් හදන්න.</span></p></div>
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I don't believe I deserve to be an entrepreneur&rdquo;</span><span class="si">&ldquo;ව්‍යවසායකයෙක් වෙන්න මම සුදුසු බව මට විශ්වාස නැහැ&rdquo;</span></p><p class="a"><b><span class="en">Session 2.</span><span class="si">2 වන සැසිය.</span></b> <span class="en">Rewrite the money beliefs and the identity that hold you back.</span><span class="si">ඔයාව පස්සට ඇදගන්න මුදල් විශ්වාස සහ අනන්‍යතාව නැවත ලියන්න.</span></p></div>
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I don't know how to sell&rdquo;</span><span class="si">&ldquo;විකුණන්න මම දන්නේ නැහැ&rdquo;</span></p><p class="a"><b><span class="en">Sessions 3 and 4.</span><span class="si">3 සහ 4 වන සැසි.</span></b> <span class="en">Build the offer, then make real asks to people who already trust you.</span><span class="si">දීමනාව හදලා, ඔයාව දැනටමත් විශ්වාස කරන අයගෙන් සැබෑ ඉල්ලීම් කරන්න.</span></p></div>
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I'm stuck in my head&rdquo;</span><span class="si">&ldquo;මම මගේ හිස ඇතුළේම හිරවෙලා&rdquo;</span></p><p class="a"><b><span class="en">Session 2.</span><span class="si">2 වන සැසිය.</span></b> <span class="en">Use the Rule of 3 to decide, and leave every session with one action.</span><span class="si">තීරණය ගන්න 3 රීතිය පාවිච්චි කරන්න, සෑම සැසියකින්ම එක ක්‍රියාමාර්ගයක් අරගෙන යන්න.</span></p></div>
+      <div class="doubt"><p class="qt"><span class="en">&ldquo;I don't know the right order of things&rdquo;</span><span class="si">&ldquo;වැඩ කරන්න ඕන නිවැරදි පිළිවෙළ මම දන්නේ නැහැ&rdquo;</span></p><p class="a"><b><span class="en">All four.</span><span class="si">හතරම.</span></b> <span class="en">The four sessions are the order: idea, mindset, strategy, execution.</span><span class="si">සැසි හතරම ඒ පිළිවෙළයි: අදහස, මානසිකත්වය, උපායමාර්ගය, ක්‍රියාත්මක කිරීම.</span></p></div>
+    </div>
+    <div class="inline-cta">
+      <a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a>
+      <p><span class="en">Not sure it fits you? Message us first.</span><span class="si">ඔයාට ගැලපෙනවාද කියලා විශ්වාස නැද්ද? මුලින් පණිවිඩයක් දාන්න.</span></p>
+    </div>
+  </div>
+</section>
 
-  <!-- Business Therapy -->
-  <section class="band band--navy prog-section" id="business-therapy">
-    <div class="wrap">
-      <img class="prog-banner prog-banner--strip" src="../../assets/img/banner-business-therapy.webp" alt="Business Therapy" width="1893" height="296">
-      <div class="prog-grid">
-        <div class="prog-text">
-          <p class="eyebrow">02 · Your business · Enrolling now</p>
-          <h2 class="prog-tag">Start. Fix. Grow.</h2>
-          <p>From business registration to your website and your first customer, get the practical guidance you need to bring your business to life.</p>
-          <p>Most business programmes teach you what to do. We teach you who you need to become to do it. Weeks 1 and 2 change how you think and decide. Weeks 3 and 4 build the business itself.</p>
-          <ol class="weeks">
-            <li><span class="wk">WK 1</span><span><strong>The Clarity</strong><span>Find the business that fits you, validate it with real people, register it.</span></span></li>
-            <li><span class="wk">WK 2</span><span><strong>The Inner Game &amp; Mindset</strong><span>Money beliefs, identity, language, decisions and your capital strategy.</span></span></li>
-            <li><span class="wk">WK 3</span><span><strong>The Strategy</strong><span>Your why, leads system, offer, money model and systems thinking.</span></span></li>
-            <li><span class="wk">WK 4</span><span><strong>The Execution</strong><span>AI, social media, a website, warm outreach and your first sale.</span></span></li>
-          </ol>
+<section class="alt" id="goal">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">The end goal</span><span class="si">අවසාන ඉලක්කය</span></div>
+      <h2><span class="en">By the end of week 4, this is what you have</span><span class="si">4 වන සතියේ අවසානයට, ඔයා ළඟ මේ තියෙනවා</span></h2>
+      <p class="lede"><span class="en">The goal of Start is simple: a real business you can show people. These are drawn as examples of what you will have built.</span><span class="si">Start එකේ ඉලක්කය සරලයි: මිනිසුන්ට පෙන්වන්න පුළුවන් සැබෑ ව්‍යාපාරයක්. ඔයා හදලා ඉවර වෙනකොට තියෙන දේවල් උදාහරණ ලෙස මෙතන ඇඳලා තියෙනවා.</span></p>
+    </div>
+    <div class="mocks">
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example one-page website">
+  <rect class="ln" x="8" y="8" width="224" height="184" rx="10"/>
+  <circle class="acc" cx="22" cy="22" r="3.5"/><circle class="bar" cx="34" cy="22" r="3.5"/><circle class="bar" cx="46" cy="22" r="3.5"/>
+  <rect class="bar" x="62" y="16" width="120" height="12" rx="6"/>
+  <text class="strong" x="20" y="58"><tspan class="en">Your promise in one line</tspan><tspan class="si">ඔයාගේ පොරොන්දුව එක පේළියකින්</tspan></text>
+  <rect class="bar" x="20" y="66" width="170" height="6" rx="3"/><rect class="bar" x="20" y="77" width="120" height="6" rx="3"/>
+  <rect class="acc" x="20" y="92" width="92" height="24" rx="12"/>
+  <text class="ink" x="66" y="108" text-anchor="middle"><tspan class="en">Book now</tspan><tspan class="si">වෙන් කරගන්න</tspan></text>
+  <rect class="soft" x="20" y="130" width="62" height="50" rx="6"/><rect class="ln" x="20" y="130" width="62" height="50" rx="6"/>
+  <rect class="soft" x="89" y="130" width="62" height="50" rx="6"/><rect class="ln" x="89" y="130" width="62" height="50" rx="6"/>
+  <rect class="soft" x="158" y="130" width="62" height="50" rx="6"/><rect class="ln" x="158" y="130" width="62" height="50" rx="6"/>
+  <circle class="acc" cx="32" cy="142" r="5"/><circle class="acc" cx="101" cy="142" r="5"/><circle class="acc" cx="170" cy="142" r="5"/>
+  <rect class="bar" x="28" y="154" width="46" height="5" rx="2.5"/><rect class="bar" x="97" y="154" width="46" height="5" rx="2.5"/><rect class="bar" x="166" y="154" width="46" height="5" rx="2.5"/>
+  <rect class="bar" x="28" y="164" width="30" height="5" rx="2.5"/><rect class="bar" x="97" y="164" width="30" height="5" rx="2.5"/><rect class="bar" x="166" y="164" width="30" height="5" rx="2.5"/>
+</svg></div><span class="wk"><span class="en">Built by session 4</span><span class="si">4 වන සැසිය වෙද්දී</span></span><h3><span class="en">A live one-page website</span><span class="si">සජීවී එක-පිටු වෙබ් අඩවියක්</span></h3><p><span class="en">One promise, one offer, one button. Something you can send to any customer.</span><span class="si">එක පොරොන්දුවක්, එක දීමනාවක්, එක බොත්තමක්. ඕනෑම පාරිභෝගිකයෙකුට යවන්න පුළුවන් දෙයක්.</span></p></div>
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example social media profile">
+  <circle class="acc" cx="42" cy="44" r="24"/>
+  <polygon fill="#131A2B" points="42,30 46,40 57,40 48,47 51,58 42,51 33,58 36,47 27,40 38,40"/>
+  <text class="strong" x="80" y="36">@yourbusiness</text>
+  <rect class="bar" x="80" y="44" width="140" height="6" rx="3"/><rect class="bar" x="80" y="55" width="105" height="6" rx="3"/>
+  <rect class="ln" x="80" y="68" width="62" height="18" rx="9"/>
+  <text x="111" y="80" text-anchor="middle"><tspan class="en">Follow</tspan><tspan class="si">අනුගමනය</tspan></text>
+  <rect class="soft" x="14" y="100" width="64" height="64" rx="6"/><rect class="ln" x="14" y="100" width="64" height="64" rx="6"/>
+  <rect class="soft" x="88" y="100" width="64" height="64" rx="6"/><rect class="ln" x="88" y="100" width="64" height="64" rx="6"/>
+  <rect class="soft" x="162" y="100" width="64" height="64" rx="6"/><rect class="ln" x="162" y="100" width="64" height="64" rx="6"/>
+  <polygon class="acc" points="46,114 51,127 65,127 54,135 58,148 46,140 34,148 38,135 27,127 41,127"/>
+  <rect class="bar" x="100" y="116" width="40" height="6" rx="3"/><rect class="bar" x="100" y="128" width="40" height="6" rx="3"/><rect class="bar" x="100" y="140" width="26" height="6" rx="3"/>
+  <circle class="acc" cx="194" cy="132" r="14"/>
+  <text x="120" y="184" text-anchor="middle"><tspan class="en">your first 3 posts</tspan><tspan class="si">ඔයාගේ පළමු පෝස්ට් 3</tspan></text>
+</svg></div><span class="wk"><span class="en">Built by session 4</span><span class="si">4 වන සැසිය වෙද්දී</span></span><h3><span class="en">An active profile</span><span class="si">සක්‍රීය ගිණුමක්</span></h3><p><span class="en">A clear bio, your first posts, and one specific person in mind.</span><span class="si">පැහැදිලි හැඳින්වීමක්, ඔයාගේ පළමු පෝස්ට්, සහ නිශ්චිත එක් පුද්ගලයෙකු ගැන හිතලා.</span></p></div>
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example first customer conversation">
+  <rect class="acc" x="40" y="10" width="186" height="36" rx="14"/>
+  <text class="ink en" x="52" y="26">Hi! I'm starting a new service.</text><text class="ink en" x="52" y="39">Can I tell you about it?</text>
+  <text class="ink si" x="52" y="26">හායි! මම අලුත් සේවාවක් පටන් ගත්තා.</text><text class="ink si" x="52" y="39">ඒ ගැන කියන්නද?</text>
+  <rect class="soft" x="14" y="56" width="150" height="26" rx="12"/><rect class="ln" x="14" y="56" width="150" height="26" rx="12"/>
+  <text class="en" x="26" y="73">Yes, please tell me more.</text><text class="si" x="26" y="73">ඔව්, කියන්න.</text>
+  <rect class="acc" x="70" y="92" width="156" height="26" rx="13"/>
+  <text class="ink en" x="82" y="109">Here is how it works...</text><text class="ink si" x="82" y="109">මේක වැඩ කරන හැටි...</text>
+  <rect class="soft" x="14" y="128" width="110" height="26" rx="12"/><rect class="ln" x="14" y="128" width="110" height="26" rx="12"/>
+  <text class="en" x="26" y="145">Yes. I'm in.</text><text class="si" x="26" y="145">ඔව්. මම එනවා.</text>
+  <rect fill="none" class="accs" stroke-width="2" x="14" y="166" width="150" height="24" rx="12"/>
+  <polygon class="acc" points="30,172 33,178 39,178 34,182 36,188 30,184 24,188 26,182 21,178 27,178"/>
+  <text class="strong" x="46" y="182"><tspan class="en">Your first customer</tspan><tspan class="si">ඔයාගේ පළමු පාරිභෝගිකයා</tspan></text>
+</svg></div><span class="wk"><span class="en">Started in session 4</span><span class="si">4 වන සැසියේදී පටන් ගන්නවා</span></span><h3><span class="en">Your first real conversations</span><span class="si">ඔයාගේ පළමු සැබෑ සංවාද</span></h3><p><span class="en">Warm outreach with a clear ask, and a real yes or no back.</span><span class="si">පැහැදිලි ඉල්ලීමක් සහිත උණුසුම් සම්බන්ධ වීම, ඒකට සැබෑ 'ඔව්' හෝ 'නැහැ' එකක්.</span></p></div>
+    </div>
+    <div class="goals">
+      <span class="gl"><span class="en">Also yours by then:</span><span class="si">ඒ වෙද්දී ඔයා ළඟ තියෙනවා:</span></span>
+      <span class="pill"><span class="en">A validated idea</span><span class="si">පරීක්ෂා කරපු අදහසක්</span></span><span class="pill"><span class="en">A registration decision</span><span class="si">ලියාපදිංචි කිරීමේ තීරණයක්</span></span><span class="pill"><span class="en">An offer and money model</span><span class="si">දීමනාවක් සහ මුදල් ආකෘතියක්</span></span><span class="pill"><span class="en">Upgraded money beliefs</span><span class="si">වෙනස් වූ මුදල් විශ්වාස</span></span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">The Business Therapy path</span><span class="si">Business Therapy ගමන</span></div>
+      <h2>Start. Fix. Grow.</h2>
+      <p class="lede"><span class="en">Business Therapy is built in three stages. Start is the first: it takes you from no business to a real one with a customer.</span><span class="si">Business Therapy හදලා තියෙන්නේ අදියර තුනකින්. Start කියන්නේ පළමු අදියර: ව්‍යාපාරයක් නැති තැනින් පටන් අරගෙන, පාරිභෝගිකයෙක් ඉන්න සැබෑ ව්‍යාපාරයකට ඔයාව ගෙනියනවා.</span></p>
+    </div>
+    <div class="path">
+      <div class="stage here"><span class="tag"><span class="en">You are here &middot; Stage 1</span><span class="si">ඔයා ඉන්නේ මෙතන &middot; 1 වන අදියර</span></span><h3>Start</h3><p><span class="en">Find the right idea, fix your mindset, design how the business makes money, and sell to your first customer.</span><span class="si">නිවැරදි අදහස හොයාගන්න, මානසිකත්වය හදාගන්න, ව්‍යාපාරය සල්ලි හොයන හැටි සැලසුම් කරන්න, පළමු පාරිභෝගිකයාට විකුණන්න.</span></p></div>
+      <div class="stage later"><span class="tag"><span class="en">Stage 2</span><span class="si">2 වන අදියර</span></span><h3>Fix</h3><p><span class="en">Comes after Start.</span><span class="si">Start එකෙන් පස්සේ එනවා.</span></p></div>
+      <div class="stage later"><span class="tag"><span class="en">Stage 3</span><span class="si">3 වන අදියර</span></span><h3>Grow</h3><p><span class="en">Comes after Fix.</span><span class="si">Fix එකෙන් පස්සේ එනවා.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap premise">
+    <div>
+      <div class="eyebrow"><span class="en">Why it works</span><span class="si">මේක වැඩ කරන්නේ ඇයි</span></div>
+      <blockquote><span class="en">Most programmes teach you what to do. We teach you who you need to become to do it.</span><span class="si">බොහෝ වැඩසටහන් උගන්වන්නේ මොනවා කරන්නද කියලයි. අපි උගන්වන්නේ ඒක කරන්න ඔයා කවුද වෙන්න ඕනේද කියලයි.</span><cite><span class="en">Entrepreneurship is personal development in disguise</span><span class="si">ව්‍යවසායකත්වය කියන්නේ වෙස් වළා ගත් පෞද්ගලික සංවර්ධනයයි</span></cite></blockquote>
+    </div>
+    <div class="split">
+      <div><span class="t"><span class="en">Strategy without mindset</span><span class="si">මානසිකත්වයක් නැති උපායමාර්ග</span></span><span class="en">leads to self-sabotage.</span><span class="si">ඒවා ආත්ම-කඩාකප්පල්කාරී බවට හැරෙනවා.</span></div>
+      <div><span class="t"><span class="en">Mindset without business skills</span><span class="si">ව්‍යාපාරික හැකියා නැති හොඳ මානසිකත්වයක්</span></span><span class="en">leads to endless dreaming.</span><span class="si">ඒක නිමක් නැති සිහිනවලට හැරෙනවා.</span></div>
+      <div><span class="t">Business Therapy</span><span class="en">teaches both, in one run: sessions 1 and 2 change how you think, decide and handle fear. Sessions 3 and 4 build the business.</span><span class="si">දෙකම එකම ගමනකින් උගන්වනවා: 1 සහ 2 සැසිවලදී ඔයා හිතන, තීරණය ගන්න, බයට මුහුණ දෙන හැටි වෙනස් වෙනවා. 3 සහ 4 සැසිවලදී ව්‍යාපාරය ගොඩනැඟෙනවා.</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="sessions">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">The four sessions</span><span class="si">සැසි හතර</span></div>
+      <h2><span class="en">One live day a week, one step closer to a customer</span><span class="si">සතියකට එක් සජීවී දිනයක්, පාරිභෝගිකයාට තව එක පියවරක් ළඟින්</span></h2>
+      <p class="lede"><span class="en">Each session ends with something you can show, and an action to finish before the next one.</span><span class="si">සෑම සැසියක්ම අවසන් වෙන්නේ ඔයාට පෙන්වන්න පුළුවන් දෙයක් එක්ක, සහ ඊළඟ සැසියට කලින් කරන්න ඕන වැඩක් එක්ක.</span></p>
+    </div>
+    <div class="sessions">
+
+      <article class="session">
+        <div><div class="num" aria-hidden="true">1</div><div class="session-meta"><span class="d"><span class="en">Day 1 &middot; Week 1</span><span class="si">1 වන දිනය &middot; 1 වන සතිය</span></span><span class="h"><span class="en">3 hours live</span><span class="si">පැය 3ක් සජීවී</span></span></div></div>
+        <div>
+          <h3><span class="en">The Clarity</span><span class="si">පැහැදිලි බව</span></h3>
+          <p class="q"><span class="en">What business should you actually start?</span><span class="si">ඇත්තටම ඔයා පටන් ගන්න ඕන මොන ව්‍යාපාරයද?</span></p>
+          <div class="cols">
+            <div class="panel"><h4><span class="en">What you work on</span><span class="si">ඔයා වැඩ කරන දේ</span></h4><ul>
+              <li><span class="en">Seven ways to find a business idea</span><span class="si">ව්‍යාපාර අදහසක් හොයාගන්න ක්‍රම හතක්</span></li>
+              <li><span class="en">Personality test (Holland Code): the work that fits you, not what sounds cool</span><span class="si">පෞරුෂ පරීක්ෂණය (Holland Code): ඇහෙන්න හොඳ දේ නෙවෙයි, ඔයාට ගැලපෙන වැඩේ</span></li>
+              <li><span class="en">Validation with real people</span><span class="si">සැබෑ මිනිසුන් එක්ක අදහස පරීක්ෂා කිරීම</span></li>
+              <li><span class="en">Registration: sole proprietor or private limited</span><span class="si">ලියාපදිංචිය: තනි හිමිකාර ව්‍යාපාරයක්ද, පෞද්ගලික සමාගමක්ද</span></li>
+              <li><span class="en">Workspace, tools, starting capital and working rhythm</span><span class="si">වැඩ කරන ස්ථානය, මෙවලම්, ආරම්භක ප්‍රාග්ධනය සහ වැඩ රටාව</span></li>
+            </ul></div>
+            <div class="panel leave"><h4><span class="en">You leave with</span><span class="si">ඔයාට ලැබෙන දේ</span></h4><ul>
+              <li><span class="en">One idea tested against real people</span><span class="si">සැබෑ මිනිසුන් එක්ක පරීක්ෂා කරපු එක් අදහසක්</span></li>
+              <li><span class="en">Your Holland Code and what it says about your business</span><span class="si">ඔයාගේ Holland Code එක සහ ඒකෙන් ව්‍යාපාරයට කියන දේ</span></li>
+              <li><span class="en">A registration decision and date</span><span class="si">ලියාපදිංචි කිරීමේ තීරණයක් සහ දිනයක්</span></li>
+              <li><span class="en">A one-page setup sheet</span><span class="si">පිටුවක සැකසුම් සටහනක්</span></li>
+            </ul></div>
+          </div>
+          <p class="between"><span class="en"><b>Before session 2:</b> talk to five people who could be your customers. Ask about their problem, not your solution.</span><span class="si"><b>2 වන සැසියට කලින්:</b> ඔයාගේ පාරිභෝගිකයන් වෙන්න පුළුවන් පස් දෙනෙක් එක්ක කතා කරන්න. අහන්නේ ඔවුන්ගේ ගැටලුව ගැනයි, ඔයාගේ විසඳුම ගැන නෙවෙයි.</span></p>
         </div>
-        <aside class="prog-facts">
-          <dl>
-            <div><dt>Investment</dt><dd>LKR 15,000</dd></div>
-            <div><dt>Format</dt><dd>2 hours a day for 4 weeks, live on Zoom</dd></div>
-            <div><dt>Class size</dt><dd>30 seats</dd></div>
-            <div><dt>Language</dt><dd>Sinhala &amp; English</dd></div>
-            <div><dt>Next batch</dt><dd>Starting soon</dd></div>
-          </dl>
-          <div class="seat-map seat-map--compact" data-seats="business-therapy" hidden></div>
-          <button class="btn btn--yellow" type="button" data-enrol="business-therapy" data-name="Business Therapy" data-whatsapp="https://chat.whatsapp.com/EMhjgNsMxB8JaW9aqIjuXA">Book your seat</button>
-          <a class="prog-link" href="../../resources/business-therapy-24-assets/">Try the 24 Assets scorecard</a>
-        </aside>
-      </div>
-    </div>
-  </section>
+      </article>
 
-  <!-- Questions -->
-  <section class="band band--tint faq">
-    <div class="wrap">
-      <p class="eyebrow">Questions</p>
-      <h2 class="h2">Before you join</h2>
-      <div class="faq-list">
-        <details>
-          <summary>Which programme should I start with?</summary>
-          <p>Start where your problem is. If you feel stuck in yourself, start with Mirror Clinic. If you have a business idea or a young business, start with Business Therapy. Not sure? Message us on WhatsApp and we'll help you choose.</p>
-        </details>
-        <details>
-          <summary>What language are the sessions in?</summary>
-          <p>Business Therapy is taught in Sinhala and English. [CONFIRM FOR MIRROR CLINIC AND COACHING]</p>
-        </details>
-        <details>
-          <summary>How do I pay?</summary>
-          <p>Message us on WhatsApp to reserve your place. We'll send you the bank details, and your place is confirmed when we receive your payment slip.</p>
-        </details>
-        <details>
-          <summary>What happens after I join?</summary>
-          <p>You'll be added to the programme's WhatsApp group, where you get the session links, resource materials and updates.</p>
-        </details>
-      </div>
+      <article class="session">
+        <div><div class="num" aria-hidden="true">2</div><div class="session-meta"><span class="d"><span class="en">Day 2 &middot; Week 2</span><span class="si">2 වන දිනය &middot; 2 වන සතිය</span></span><span class="h"><span class="en">3 hours live</span><span class="si">පැය 3ක් සජීවී</span></span></div></div>
+        <div>
+          <h3><span class="en">The Inner Game &amp; Mindset</span><span class="si">අභ්‍යන්තර ක්‍රීඩාව සහ මානසිකත්වය</span></h3>
+          <p class="q"><span class="en">What is actually stopping you from taking action?</span><span class="si">ඇත්තටම ඔයාව වැඩට බැසීමෙන් නවත්තන්නේ මොකක්ද?</span></p>
+          <div class="cols">
+            <div class="panel"><h4><span class="en">What you work on</span><span class="si">ඔයා වැඩ කරන දේ</span></h4><ul>
+              <li><span class="en">Money beliefs: where they came from, and how to rewrite them with NLP</span><span class="si">මුදල් විශ්වාස: ඒවා ආවේ කොහෙන්ද, NLP වලින් ඒවා නැවත ලියන හැටි</span></li>
+              <li><span class="en">Identity: who you are becoming</span><span class="si">අනන්‍යතාව: ඔයා බවට පත් වෙන්නේ කවුද</span></li>
+              <li><span class="en">Inner language: what you tell yourself all day</span><span class="si">අභ්‍යන්තර භාෂාව: දවස පුරා ඔයාටම කියන දේ</span></li>
+              <li><span class="en">Decisions: the Rule of 3, and why you overthink</span><span class="si">තීරණ: 3 රීතිය, සහ ඔයා අධික ලෙස හිතන්නේ ඇයි</span></li>
+              <li><span class="en">Business capital: what you already own and where money will come from</span><span class="si">ව්‍යාපාරික ප්‍රාග්ධනය: ඔයාට දැනටමත් තියෙන දේ සහ සල්ලි එන්නේ කොහෙන්ද</span></li>
+            </ul></div>
+            <div class="panel leave"><h4><span class="en">You leave with</span><span class="si">ඔයාට ලැබෙන දේ</span></h4><ul>
+              <li><span class="en">Three money beliefs replaced, backed by evidence</span><span class="si">සාක්ෂි සහිතව වෙනස් කරපු මුදල් විශ්වාස තුනක්</span></li>
+              <li><span class="en">A written identity statement</span><span class="si">ලියා තැබූ අනන්‍යතා ප්‍රකාශයක්</span></li>
+              <li><span class="en">One avoided decision finally made</span><span class="si">මග හැරපු තීරණයක් අන්තිමේ ගත්තා</span></li>
+              <li><span class="en">A capital audit, ranked by speed to cash</span><span class="si">ප්‍රාග්ධන විගණනයක්, සල්ලි ලැබෙන වේගය අනුව පෙළගස්වපු</span></li>
+            </ul></div>
+          </div>
+          <p class="between"><span class="en"><b>Before session 3:</b> spend an hour somewhere just above your comfort level, such as a high-end restaurant, and write down what you notice in the room and in yourself.</span><span class="si"><b>3 වන සැසියට කලින්:</b> ඔයාගේ සුවපහසු මට්ටමට වඩා ටිකක් උඩින් තියෙන තැනක, උදාහරණයක් විදිහට මිල අධික අවන්හලක, පැයක් ගත කරන්න. ඒ කාමරයේ සහ ඔයා තුළ දැනුණු දේ ලියා තබන්න.</span></p>
+        </div>
+      </article>
+
+      <article class="session">
+        <div><div class="num" aria-hidden="true">3</div><div class="session-meta"><span class="d"><span class="en">Day 3 &middot; Week 3</span><span class="si">3 වන දිනය &middot; 3 වන සතිය</span></span><span class="h"><span class="en">3 hours live</span><span class="si">පැය 3ක් සජීවී</span></span></div></div>
+        <div>
+          <h3><span class="en">The Strategy</span><span class="si">උපායමාර්ගය</span></h3>
+          <p class="q"><span class="en">How will you get customers and make money?</span><span class="si">පාරිභෝගිකයන් හොයාගෙන සල්ලි හොයන්නේ කොහොමද?</span></p>
+          <div class="cols">
+            <div class="panel"><h4><span class="en">What you work on</span><span class="si">ඔයා වැඩ කරන දේ</span></h4><ul>
+              <li><span class="en">Know your why: your life, your business and your customer</span><span class="si">ඔයාගේ 'ඇයි' දැනගන්න: ජීවිතය, ව්‍යාපාරය, පාරිභෝගිකයා</span></li>
+              <li><span class="en">Lead system: how customers find you, starting with people who already trust you</span><span class="si">ලීඩ් පද්ධතිය: ඔයාව දැනටමත් විශ්වාස කරන අයගෙන් පටන් අරගෙන, පාරිභෝගිකයන් ඔයාව සොයාගන්නා ක්‍රමය</span></li>
+              <li><span class="en">Your offer: the promise, the proof and the guarantee</span><span class="si">ඔයාගේ දීමනාව (offer): පොරොන්දුව, සාක්ෂිය සහ සහතිකය</span></li>
+              <li><span class="en">Money model: how one customer becomes worth ten</span><span class="si">මුදල් ආකෘතිය: එක් පාරිභෝගිකයෙක් දහ දෙනෙකුගේ වටිනාකමට හැරෙන හැටි</span></li>
+              <li><span class="en">Systems thinking: what to automate, delegate or drop</span><span class="si">පද්ධති චින්තනය: ස්වයංක්‍රීය කරන්නේ, පවරන්නේ, අත්හරින්නේ මොනවාද</span></li>
+            </ul></div>
+            <div class="panel leave"><h4><span class="en">You leave with</span><span class="si">ඔයාට ලැබෙන දේ</span></h4><ul>
+              <li><span class="en">Three whys, each in one sentence</span><span class="si">එක වාක්‍යයකින් ලියපු 'ඇයි' තුනක්</span></li>
+              <li><span class="en">A one-page offer you can read aloud</span><span class="si">හයියෙන් කියවන්න පුළුවන් පිටුවක දීමනාවක්</span></li>
+              <li><span class="en">A money ladder: attract, upsell, continue</span><span class="si">මුදල් ඉණිමගක්: ආකර්ෂණය, ඉහළ විකිණීම, අඛණ්ඩ ආදායම</span></li>
+              <li><span class="en">A list of 50 people to contact</span><span class="si">සම්බන්ධ කරගන්න පුළුවන් පුද්ගලයන් 50 දෙනෙකුගේ ලැයිස්තුවක්</span></li>
+            </ul></div>
+          </div>
+          <p class="between"><span class="en"><b>Before session 4:</b> send your first ten warm messages. No pitch, just a clear and honest ask.</span><span class="si"><b>4 වන සැසියට කලින්:</b> ඔයාගේ පළමු උණුසුම් පණිවිඩ දහය යවන්න. විකුණන කතාවක් නැතුව, පැහැදිලි, අවංක ඉල්ලීමක් විතරයි.</span></p>
+        </div>
+      </article>
+
+      <article class="session">
+        <div><div class="num" aria-hidden="true">4</div><div class="session-meta"><span class="d"><span class="en">Day 4 &middot; Week 4</span><span class="si">4 වන දිනය &middot; 4 වන සතිය</span></span><span class="h"><span class="en">3 hours live</span><span class="si">පැය 3ක් සජීවී</span></span></div></div>
+        <div>
+          <h3><span class="en">The Execution</span><span class="si">ක්‍රියාත්මක කිරීම</span></h3>
+          <p class="q"><span class="en">Now you build it, launch it and sell.</span><span class="si">දැන් ඔයා ඒක හදනවා, දියත් කරනවා, විකුණනවා.</span></p>
+          <div class="cols">
+            <div class="panel"><h4><span class="en">What you work on</span><span class="si">ඔයා වැඩ කරන දේ</span></h4><ul>
+              <li><span class="en">AI in your business: move faster without losing your judgment</span><span class="si">ව්‍යාපාරයේ AI: ඔයාගේ විනිශ්චය නැති නොකරගෙන වේගවත් වෙන්න</span></li>
+              <li><span class="en">Audience and social media: get visible in one lane</span><span class="si">ප්‍රේක්ෂකයන් සහ සමාජ මාධ්‍ය: එක් මාර්ගයක් තුළ පෙනී සිටින්න</span></li>
+              <li><span class="en">A simple website that builds credibility</span><span class="si">විශ්වාසය ගොඩනඟන සරල වෙබ් අඩවියක්</span></li>
+              <li><span class="en">Warm outreach: the direct ask</span><span class="si">උණුසුම් සම්බන්ධ වීම: සෘජු ඉල්ලීම</span></li>
+              <li><span class="en">Your first sale: prove it works</span><span class="si">ඔයාගේ පළමු විකුණුම: ඒක වැඩ කරනවා කියලා ඔප්පු කරන්න</span></li>
+            </ul></div>
+            <div class="panel leave"><h4><span class="en">You leave with</span><span class="si">ඔයාට ලැබෙන දේ</span></h4><ul>
+              <li><span class="en">A live one-page website</span><span class="si">සජීවී එක්-පිටු වෙබ් අඩවියක්</span></li>
+              <li><span class="en">An active profile with your first posts</span><span class="si">පළමු පෝස්ට් සහිත සක්‍රීය ගිණුමක්</span></li>
+              <li><span class="en">Real asks made to real buyers</span><span class="si">සැබෑ ගැනුම්කරුවන්ට කරපු සැබෑ ඉල්ලීම්</span></li>
+              <li><span class="en">A clear yes or no from your first customers</span><span class="si">පළමු පාරිභෝගිකයන්ගෙන් පැහැදිලි 'ඔව්' හෝ 'නැහැ' එකක්</span></li>
+            </ul></div>
+          </div>
+          <p class="between"><span class="en"><b>After the programme:</b> keep asking until you have your first paying customer. A no is information. A yes is a business.</span><span class="si"><b>වැඩසටහනින් පස්සේ:</b> පළමු ගෙවන පාරිභෝගිකයා ලැබෙන තුරු දිගටම ඉල්ලන්න. 'නැහැ' කියන්නේ තොරතුරක්. 'ඔව්' කියන්නේ ව්‍යාපාරයක්.</span></p>
+        </div>
+      </article>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">What you will build</span><span class="si">ඔයා හදන දේ</span></div>
+      <h2><span class="en">Real tools you keep, not just slides</span><span class="si">ස්ලයිඩ් විතරක් නෙවෙයි, ඔයා ළඟ තියාගන්න සැබෑ මෙවලම්</span></h2>
+      <p class="lede"><span class="en">Every session produces something you can hold up and use. Here are three of them, drawn as examples.</span><span class="si">සෑම සැසියකින්ම ඔයාට පෙන්වන්න, පාවිච්චි කරන්න පුළුවන් දෙයක් හැදෙනවා. උදාහරණ ලෙස ඒවායින් තුනක් මෙන්න.</span></p>
+    </div>
+    <div class="mocks">
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example Holland Code hexagon chart">
+  <polygon class="ln" points="120,30 180.6,65 180.6,135 120,170 59.4,135 59.4,65"/>
+  <polygon class="ln" points="120,65 150.3,82.5 150.3,117.5 120,135 89.7,117.5 89.7,82.5"/>
+  <line class="ln" x1="120" y1="100" x2="120" y2="30"/><line class="ln" x1="120" y1="100" x2="180.6" y2="65"/><line class="ln" x1="120" y1="100" x2="180.6" y2="135"/>
+  <line class="ln" x1="120" y1="100" x2="120" y2="170"/><line class="ln" x1="120" y1="100" x2="59.4" y2="135"/><line class="ln" x1="120" y1="100" x2="59.4" y2="65"/>
+  <polygon class="acc" fill-opacity=".55" stroke="none" points="120,72 168.5,72 141.2,112.3 120,170 83.6,121 65.4,68.5"/>
+  <polygon fill="none" class="accs" stroke-width="2" points="120,72 168.5,72 141.2,112.3 120,170 83.6,121 65.4,68.5"/>
+  <circle class="acc" cx="120" cy="170" r="4"/><circle class="acc" cx="65.4" cy="68.5" r="4"/><circle class="acc" cx="168.5" cy="72" r="4"/>
+  <text class="strong" x="120" y="20" text-anchor="middle">R</text><text class="strong" x="200" y="62" text-anchor="middle">I</text><text class="strong" x="200" y="146" text-anchor="middle">A</text>
+  <text class="strong" x="120" y="192" text-anchor="middle">S</text><text class="strong" x="40" y="146" text-anchor="middle">E</text><text class="strong" x="40" y="62" text-anchor="middle">C</text>
+</svg></div><span class="wk"><span class="en">Session 1</span><span class="si">1 වන සැසිය</span></span><h3><span class="en">Your Holland Code</span><span class="si">ඔයාගේ Holland Code එක</span></h3><p><span class="en">Match your personality to the kind of business that gives you energy instead of draining it.</span><span class="si">ඔයාගේ පෞරුෂයට ගැලපෙන, ශක්තිය ඉවර කරනවා වෙනුවට ශක්තිය දෙන ව්‍යාපාරය හොයාගන්න.</span></p></div>
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example one-page offer sheet">
+  <text class="strong" x="14" y="18"><tspan class="en">YOUR OFFER, ONE PAGE</tspan><tspan class="si">ඔයාගේ දීමනාව, එක පිටුවක්</tspan></text>
+  <text x="14" y="42"><tspan class="en">Who it is for</tspan><tspan class="si">කාටද</tspan></text><rect class="bar" x="14" y="47" width="150" height="7" rx="3.5"/>
+  <text x="14" y="72"><tspan class="en">The result you promise</tspan><tspan class="si">ඔයා දෙන පොරොන්දුව</tspan></text><rect class="bar" x="14" y="77" width="190" height="7" rx="3.5"/><rect class="bar" x="14" y="89" width="120" height="7" rx="3.5"/>
+  <text x="14" y="114"><tspan class="en">Time frame</tspan><tspan class="si">කාල සීමාව</tspan></text><rect class="bar" x="14" y="119" width="80" height="7" rx="3.5"/>
+  <text x="14" y="144"><tspan class="en">What is included</tspan><tspan class="si">ඇතුළත් දේ</tspan></text><rect class="bar" x="14" y="149" width="170" height="7" rx="3.5"/>
+  <text x="14" y="174"><tspan class="en">Guarantee</tspan><tspan class="si">සහතිකය</tspan></text><rect class="bar" x="14" y="179" width="110" height="7" rx="3.5"/>
+  <rect class="acc" x="150" y="108" width="80" height="34" rx="17"/><polygon class="acc" points="164,140 172,140 166,150"/>
+  <text class="ink" x="190" y="129" text-anchor="middle"><tspan class="en">&#8220;How much?&#8221;</tspan><tspan class="si">&#8220;කීයද?&#8221;</tspan></text>
+</svg></div><span class="wk"><span class="en">Session 3</span><span class="si">3 වන සැසිය</span></span><h3><span class="en">Your one-page offer</span><span class="si">ඔයාගේ එක-පිටු දීමනාව</span></h3><p><span class="en">Promise, proof and guarantee on one page you can read aloud. If they ask the price, you are close.</span><span class="si">පොරොන්දුව, සාක්ෂිය සහ සහතිකය හයියෙන් කියවන්න පුළුවන් එක පිටුවක. මිල අහනවා නම්, ඔයා ළඟයි.</span></p></div>
+      <div class="mock"><div class="sheet"><div class="tabs"><i></i><i></i><i></i></div><span class="tag"><span class="en">Example</span><span class="si">උදාහරණයක්</span></span><svg class="ill" viewBox="0 0 240 200" role="img" aria-label="Example money ladder with three steps">
+  <line class="ln" x1="10" y1="170" x2="230" y2="170"/>
+  <rect class="soft" x="20" y="120" width="64" height="50" rx="6"/><rect fill="none" class="ln" x="20" y="120" width="64" height="50" rx="6"/>
+  <rect class="soft" x="88" y="85" width="64" height="85" rx="6"/><rect fill="none" class="ln" x="88" y="85" width="64" height="85" rx="6"/>
+  <rect class="acc" x="156" y="40" width="64" height="130" rx="6"/>
+  <text class="strong" x="52" y="150" text-anchor="middle"><tspan class="en">Attract</tspan><tspan class="si">ආකර්ෂණය</tspan></text>
+  <text class="strong" x="120" y="132" text-anchor="middle"><tspan class="en">Upsell</tspan><tspan class="si">ඉහළ විකිණීම</tspan></text>
+  <text class="ink" x="188" y="108" text-anchor="middle"><tspan class="en">Continue</tspan><tspan class="si">අඛණ්ඩව</tspan></text>
+  <text x="52" y="112" text-anchor="middle"><tspan class="en">low price</tspan><tspan class="si">අඩු මිල</tspan></text>
+  <text x="120" y="77" text-anchor="middle"><tspan class="en">deeper help</tspan><tspan class="si">ගැඹුරු උදව්</tspan></text>
+  <text class="ink" x="188" y="124" text-anchor="middle"><tspan class="en">every month</tspan><tspan class="si">සෑම මාසයකම</tspan></text>
+  <path class="accs" fill="none" stroke-width="2" stroke-linecap="round" d="M60 104 Q90 70 112 66 M128 60 Q160 28 182 30"/>
+  <polygon class="acc" points="180,24 190,31 179,36"/>
+</svg></div><span class="wk"><span class="en">Session 3</span><span class="si">3 වන සැසිය</span></span><h3><span class="en">Your money ladder</span><span class="si">ඔයාගේ මුදල් ඉණිමග</span></h3><p><span class="en">Attract, upsell, continue: how one customer becomes worth ten.</span><span class="si">ආකර්ෂණය, ඉහළ විකිණීම, අඛණ්ඩ ආදායම: එක් පාරිභෝගිකයෙක් දහ දෙනෙකුගේ වටිනාකමට හැරෙන හැටි.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">How it works</span><span class="si">මේක වැඩ කරන හැටි</span></div>
+      <h2><span class="en">Three steps to your seat</span><span class="si">ඔයාගේ ආසනයට පියවර තුනක්</span></h2>
+    </div>
+    <ol class="steps">
+      <li><span class="n">1</span><h3><span class="en">Message us on WhatsApp</span><span class="si">WhatsApp එකෙන් පණිවිඩයක් දාන්න</span></h3><p><span class="en">Ask anything about the programme and whether it fits you.</span><span class="si">වැඩසටහන ගැනත්, ඒක ඔයාට ගැලපෙනවාද කියලත් ඕනෑම දෙයක් අහන්න.</span></p></li>
+      <li><span class="n">2</span><h3><span class="en">Reserve your seat</span><span class="si">ඔයාගේ ආසනය වෙන් කරගන්න</span></h3><p><span class="en">Each batch is limited to 30 students.</span><span class="si">එක් කණ්ඩායමකට සිසුන් 30 දෙනෙකුට පමණයි.</span></p></li>
+      <li><span class="n">3</span><h3><span class="en">Build with us, live</span><span class="si">අපි එක්ක සජීවීව ගොඩනඟන්න</span></h3><p><span class="en">Four live sessions, one a week, building your own business as you go.</span><span class="si">සතියකට එක බැගින් සජීවී සැසි හතරක්, ඔයාගේම ව්‍යාපාරය හදමින්.</span></p></li>
+    </ol>
+    <div class="inline-cta">
+      <a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Start on WhatsApp</span><span class="si">WhatsApp එකෙන් පටන් ගන්න</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">Inside each 3-hour session</span><span class="si">සෑම පැය 3ක සැසියක් ඇතුළතම</span></div>
+      <h2><span class="en">Every session runs the same way</span><span class="si">සෑම සැසියක්ම එකම විදිහට සිදු වෙනවා</span></h2>
+    </div>
+    <div class="shape">
+      <div><span class="n">30</span><span class="t"><span class="en">minutes: review last week's work and questions</span><span class="si">මිනිත්තු: පසුගිය සතියේ වැඩ සහ ප්‍රශ්න පරීක්ෂා කිරීම</span></span></div>
+      <div><span class="n">60</span><span class="t"><span class="en">minutes: the teaching, in plain language</span><span class="si">මිනිත්තු: ඉගැන්වීම, සරල භාෂාවෙන්</span></span></div>
+      <div><span class="n">75</span><span class="t"><span class="en">minutes: build your own business, live, with feedback</span><span class="si">මිනිත්තු: ඔයාගේම ව්‍යාපාරය සජීවීව, ප්‍රතිචාර සහිතව ගොඩනඟනවා</span></span></div>
+      <div><span class="n">15</span><span class="t"><span class="en">minutes: commit to your next action</span><span class="si">මිනිත්තු: ඊළඟ ක්‍රියාමාර්ගයට කැපවීම</span></span></div>
+    </div>
+    <p class="note"><span class="en">Most of the time goes to building your own business, not listening.</span><span class="si">වැඩි කාලයක් යන්නේ අහන් ඉන්නවාට නෙවෙයි, ඔයාගේම ව්‍යාපාරය හදන්නයි.</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">After four weeks</span><span class="si">සති හතරකට පස්සේ</span></div>
+      <h2><span class="en">What you will have</span><span class="si">ඔයාට ලැබෙන දේ</span></h2>
+    </div>
+    <div class="grid3">
+      <div class="card"><h3><span class="en">Clarity</span><span class="si">පැහැදිලි බව</span></h3><p><span class="en">You know why you are doing this, and which business fits you.</span><span class="si">ඔයා මේක කරන්නේ ඇයි කියලත්, ඔයාට ගැලපෙන ව්‍යාපාරය මොකක්ද කියලත් දන්නවා.</span></p></div>
+      <div class="card"><h3><span class="en">A registered business</span><span class="si">ලියාපදිංචි ව්‍යාපාරයක්</span></h3><p><span class="en">The business exists on paper, with a structure you chose on purpose.</span><span class="si">ඔයා හිතාමතා තෝරාගත් ව්‍යුහයක් සහිතව ව්‍යාපාරය කඩදාසියේ පවා පවතිනවා.</span></p></div>
+      <div class="card"><h3><span class="en">A live website</span><span class="si">සජීවී වෙබ් අඩවියක්</span></h3><p><span class="en">A simple, credible page you can send to any customer.</span><span class="si">ඕනෑම පාරිභෝගිකයෙකුට යවන්න පුළුවන් සරල, විශ්වාසදායක පිටුවක්.</span></p></div>
+      <div class="card"><h3><span class="en">A visible presence</span><span class="si">පෙනී සිටීමක්</span></h3><p><span class="en">Active social media in one lane, aimed at one specific person.</span><span class="si">නිශ්චිත එක් පුද්ගලයෙකු ඉලක්ක කරපු, එක් මාර්ගයක සක්‍රීය සමාජ මාධ්‍ය.</span></p></div>
+      <div class="card"><h3><span class="en">An upgraded money belief</span><span class="si">වෙනස් වූ මුදල් විශ්වාස</span></h3><p><span class="en">The beliefs that capped your income, replaced with ones you can prove.</span><span class="si">ඔයාගේ ආදායම සීමා කරපු විශ්වාස, ඔප්පු කරන්න පුළුවන් ඒවායින් ප්‍රතිස්ථාපනය වෙනවා.</span></p></div>
+      <div class="card"><h3><span class="en">Confidence to sell</span><span class="si">විකුණන්න විශ්වාසය</span></h3><p><span class="en">An offer, a money model and a real conversation with your first buyers.</span><span class="si">දීමනාවක්, මුදල් ආකෘතියක් සහ ඔයාගේ පළමු ගැනුම්කරුවන් එක්ක සැබෑ සංවාදයක්.</span></p></div>
+    </div>
+    <div class="inline-cta">
+      <a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a>
+      <p><span class="en">Only 30 seats per batch.</span><span class="si">එක් කණ්ඩායමකට ආසන 30යි.</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="included">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">What you get</span><span class="si">ඔයාට ලැබෙන්නේ</span></div>
+      <h2><span class="en">Everything that is included</span><span class="si">ඇතුළත් සියල්ල</span></h2>
+    </div>
+    <div class="stack">
+      <div><div class="t"><span class="h"><span class="en">12 hours of live training</span><span class="si">සජීවී පුහුණුව පැය 12ක්</span></span><span class="d"><span class="en">Three hours a week for four weeks, taught live on Zoom.</span><span class="si">සතියකට පැය තුන බැගින්, සති හතරක්, Zoom එකෙන් සජීවීව.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+      <div><div class="t"><span class="h"><span class="en">Worksheets, templates and checklists</span><span class="si">වැඩ පත්‍රිකා, සැකිලි සහ චෙක්ලිස්ට්</span></span><span class="d"><span class="en">Resource materials for every session.</span><span class="si">සෑම සැසියකටම සම්පත්.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+      <div><div class="t"><span class="h"><span class="en">1-to-1 guidance</span><span class="si">පුද්ගලික මාර්ගෝපදේශනය</span></span><span class="d"><span class="en">Personal support with your own business challenges.</span><span class="si">ඔයාගේම ව්‍යාපාර අභියෝග සඳහා පුද්ගලික සහාය.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+      <div><div class="t"><span class="h"><span class="en">Tailored coaching</span><span class="si">ඔයාට හැඩගැසුණු මග පෙන්වීම</span></span><span class="d"><span class="en">Practical advice based on your idea, goals and progress.</span><span class="si">ඔයාගේ අදහස, ඉලක්ක සහ ප්‍රගතිය අනුව ප්‍රායෝගික උපදෙස්.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+      <div><div class="t"><span class="h"><span class="en">Between-session support</span><span class="si">සැසි අතර සහාය</span></span><span class="d"><span class="en">Get your questions answered and stay accountable.</span><span class="si">ඔයාගේ ප්‍රශ්නවලට පිළිතුරු ගන්න, වගවීමෙන් ඉන්න.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+      <div><div class="t"><span class="h"><span class="en">A cohort of 30, no more</span><span class="si">ආසන 30කට සීමා වූ කණ්ඩායමක්</span></span><span class="d"><span class="en">Every student gets personal attention and real feedback.</span><span class="si">සෑම සිසුවෙකුටම පුද්ගලික අවධානයක් සහ සැබෑ ප්‍රතිචාරයක්.</span></span></div><span class="ok"><span class="en">Included</span><span class="si">ඇතුළත්</span></span></div>
+    </div>
+    <div class="sum"><span class="l"><span class="en">All of it, one payment</span><span class="si">මේ සියල්ල, එක ගෙවීමකට</span></span><span class="p">LKR 15,000</span></div>
+    <div class="inline-cta">
+      <a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow"><span class="en">Who it is for</span><span class="si">මේක කාටද</span></div>
+      <h2><span class="en">Is Business Therapy Start right for you?</span><span class="si">Business Therapy Start ඔයාට ගැලපෙනවාද?</span></h2>
+    </div>
+    <div class="fit">
+      <div><span class="chip yes"><span class="en">Yes, if you</span><span class="si">ඔව්, ඔයා නම්</span></span><ul>
+        <li><span class="en">Have a business idea, or three</span><span class="si">ව්‍යාපාර අදහසක් (හෝ තුනක්) තියෙනවා</span></li>
+        <li><span class="en">Are tired of thinking about it</span><span class="si">ඒ ගැන හිතලා හිතලා වෙහෙසිලා</span></li>
+        <li><span class="en">Want to build something real</span><span class="si">සැබෑ දෙයක් ගොඩනඟන්න ඕනේ</span></li>
+        <li><span class="en">Are willing to do the inner work</span><span class="si">අභ්‍යන්තර වැඩ කරන්න කැමතියි</span></li>
+        <li><span class="en">Believe you deserve this</span><span class="si">මේක ඔයාට හිමි බව විශ්වාස කරනවා</span></li></ul></div>
+      <div><span class="chip maybe"><span class="en">Maybe, if you</span><span class="si">සමහර විට, ඔයා නම්</span></span><ul>
+        <li><span class="en">Already have a business: you will scale faster</span><span class="si">දැනටමත් ව්‍යාපාරයක් තියෙනවා: ඔයා වේගයෙන් වැඩි දියුණු වෙයි</span></li>
+        <li><span class="en">Are scared: fear means you care</span><span class="si">බයයි: බය කියන්නේ ඔයාට වැදගත් කියන එක</span></li>
+        <li><span class="en">Have failed before: we learn from that</span><span class="si">කලින් අසාර්ථක වෙලා තියෙනවා: ඒකෙන් අපි ඉගෙනගන්නවා</span></li></ul></div>
+      <div><span class="chip no"><span class="en">No, if you</span><span class="si">නැහැ, ඔයා නම්</span></span><ul>
+        <li><span class="en">Want to stay comfortable</span><span class="si">සුවපහසුවේම ඉන්න ඕනේ</span></li>
+        <li><span class="en">Want a magic formula</span><span class="si">ඉන්ද්‍රජාලික සූත්‍රයක් ඕනේ</span></li>
+        <li><span class="en">Are not willing to take imperfect action</span><span class="si">අසම්පූර්ණ ක්‍රියාමාර්ග ගන්න කැමති නැහැ</span></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap mentor">
+    <div>
+      <div class="eyebrow"><span class="en">Your mentor</span><span class="si">ඔයාගේ උපදේශකයා</span></div>
+      <h3>Darshana Godawaththa</h3>
+      <p><span class="en">Born and raised in Badulla, Sri Lanka. Darshana studied Film &amp; Television, then spent ten years in Beijing on a scholarship, learning how people think across cultures, languages and mindsets.</span><span class="si">ශ්‍රී ලංකාවේ බදුල්ලේ ඉපදී හැදුණු Darshana, චිත්‍රපට සහ රූපවාහිනී අධ්‍යයනය කළා. ඉන්පසු ශිෂ්‍යත්වයක් යටතේ බෙයිජිං නුවර වසර දහයක් ගත කරමින්, විවිධ සංස්කෘතීන්, භාෂා සහ මානසිකත්වයන් හරහා මිනිසුන් හිතන විදිහ ඉගෙනගත්තා.</span></p>
+      <p><span class="en">After leading strategy at Sri Road and Ceylon Tips, he followed one question: what truly makes people change, grow and thrive? That question led him to found Gurutharuva.</span><span class="si">Sri Road සහ Ceylon Tips හි උපායමාර්ග මෙහෙයවූ පසු, ඔහු එක් ප්‍රශ්නයක් පසුපස ගියා: මිනිසුන් සැබවින්ම වෙනස් වෙන්නේ, වැඩෙන්නේ, සාර්ථක වෙන්නේ කුමක් නිසාද? ඒ ප්‍රශ්නය ඔහුව ගුරුතරුව ආරම්භ කිරීමට යොමු කළා.</span></p>
+      <p class="pull"><span class="en">&ldquo;You don't have to live with your problems. You have the power to solve them.&rdquo;</span><span class="si">&ldquo;ඔයාට ඔයාගේ ප්‍රශ්න එක්ක ජීවත් වෙන්න අවශ්‍ය නැහැ. ඒවා විසඳන්න ඔයාට බලය තියෙනවා.&rdquo;</span></p>
+    </div>
+    <div class="creds" role="list" aria-label="Certifications">
+      <span class="cred" role="listitem">NLP Practitioner</span><span class="cred" role="listitem">NLP Coaching</span><span class="cred" role="listitem">Hypnotherapy</span><span class="cred" role="listitem">Time Line Therapy&reg;</span><span class="cred" role="listitem">Train the Trainer &middot; ABNLP</span>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow"><span class="en">Questions</span><span class="si">ප්‍රශ්න</span></div><h2><span class="en">Before you join</span><span class="si">එකතු වෙන්න කලින්</span></h2></div>
+    <div class="faq">
+      <details><summary><span class="en">Do I need a business idea already?</span><span class="si">මට දැනටමත් ව්‍යාපාර අදහසක් තියෙන්න ඕනද?</span></summary><p><span class="en">It helps, but you do not need a perfect one. Session 1 shows you how to generate ideas, match them to your personality and test them with real people.</span><span class="si">තිබුණොත් හොඳයි, නමුත් පරිපූර්ණ එකක් ඕනේ නෑ. 1 වන සැසියේදී අදහස් හොයාගන්නා හැටි, ඒවා ඔයාගේ පෞරුෂයට ගලපන හැටි, සැබෑ මිනිසුන් එක්ක පරීක්ෂා කරන හැටි පෙන්වනවා.</span></p></details>
+      <details><summary><span class="en">I live outside Sri Lanka. Is it still for me?</span><span class="si">මම ශ්‍රී ලංකාවෙන් පිටත ඉන්නේ. ඒත් මට ගැලපෙනවාද?</span></summary><p><span class="en">Yes. The sessions are live on Zoom, and the mindset, offer, money model and selling lessons apply anywhere. The registration lesson uses Sri Lankan structures as its example, so you apply the same decision to your own country's rules. Message us on WhatsApp if you want to talk it through.</span><span class="si">ගැලපෙනවා. සැසි Zoom එකෙන් සජීවීව පැවැත්වෙන අතර, මානසිකත්වය, දීමනාව, මුදල් ආකෘතිය සහ විකිණීමේ පාඩම් ඕනෑම රටකට වලංගුයි. ලියාපදිංචි කිරීමේ පාඩමේ උදාහරණය ශ්‍රී ලංකාවේ ව්‍යුහයන් නිසා, ඔයා ඒ තීරණයම ඔයාගේ රටේ නීති අනුව ගන්නවා. කතා කරලා බලන්න ඕන නම් WhatsApp එකෙන් පණිවිඩයක් දාන්න.</span></p></details>
+      <details><summary><span class="en">What language are the sessions in?</span><span class="si">සැසි පවත්වන්නේ මොන භාෂාවෙන්ද?</span></summary><p><span class="en">Sinhala and English.</span><span class="si">සිංහල සහ ඉංග්‍රීසි.</span></p></details>
+      <details><summary><span class="en">What do I need to take part?</span><span class="si">සහභාගි වෙන්න මොනවා ඕනද?</span></summary><p><span class="en">A phone or computer with Zoom, an internet connection, and time to work on your own business between sessions. The programme works only if you do the work.</span><span class="si">Zoom දාන්න පුළුවන් දුරකථනයක් හෝ පරිගණකයක්, අන්තර්ජාල සම්බන්ධතාවයක්, සහ සැසි අතර ඔයාගේම ව්‍යාපාරය මත වැඩ කරන්න කාලයක්. ඔයා වැඩ කළොත් විතරයි මේක වැඩ කරන්නේ.</span></p></details>
+      <details><summary><span class="en">Where does this fit with Fix and Grow?</span><span class="si">Fix සහ Grow එක්ක මේක ගැලපෙන්නේ කොහොමද?</span></summary><p><span class="en">Start is the first stage. It is for people building a business from the beginning. Fix and Grow come after it.</span><span class="si">Start කියන්නේ පළමු අදියර. ව්‍යාපාරයක් මුල ඉඳන්ම හදන අයටයි මේක. Fix සහ Grow ඒකෙන් පස්සේ එනවා.</span></p></details>
+    </div>
+  </div>
+</section>
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="ready">
-      <div>
-        <h2>Ready to start?</h2>
-        <p>WhatsApp +94 71 550 7060 · gurutharuva@gmail.com</p>
-      </div>
-      <a class="btn btn--yellow" href="https://wa.me/94715507060">Message us on WhatsApp</a>
+<div class="cta">
+  <div class="wrap cta-grid">
+    <div>
+      <div class="eyebrow"><span class="en">Next batch starting soon</span><span class="si">ඊළඟ කණ්ඩායම ඉක්මනින් ආරම්භ වෙනවා</span></div>
+      <h2><span class="en">In four weeks, one of two things happens</span><span class="si">සති හතරකින් පස්සේ, දෙයාකාරයකින් එකක් වෙනවා</span></h2>
+      <p><span class="en">Either you will have a registered business with customers, or you will have the same idea with zero progress. Time passes either way. What will you do with it?</span><span class="si">එක්කෝ පාරිභෝගිකයන් ඉන්න ලියාපදිංචි ව්‍යාපාරයක් ඔයාට තියෙනවා. නැත්නම් කිසිම ප්‍රගතියක් නැති එකම අදහසම තියෙනවා. කොහොම වුණත් කාලය ගතවෙනවා. ඒ කාලය ඔයා පාවිච්චි කරන්නේ කොහොමද?</span></p>
     </div>
-    <div class="footer-cols">
-      <div class="footer-brand">
-        <a class="brand" href="../../"><img src="../../assets/img/logo.png" alt=""><span><b>Gurutharuva</b></span></a>
-        <p class="si" lang="si">ජීවිතයට පාර කියන ගුරු තරුව ඔබමයි.</p>
-        <p>You are the guiding star of your own life.</p>
-      </div>
-      <div class="footer-col">
-        <strong>Programmes</strong>
-        <a href="../mirror-clinic/">Mirror Clinic</a>
-        <a href="../business-therapy/">Business Therapy</a>
-        <a href="../wealth-code/">Wealth Code</a>
-        <a href="../#coaching">1-to-1 Coaching</a>
-      </div>
-      <div class="footer-col">
-        <strong>Follow</strong>
-        <a href="https://www.facebook.com/gurutharuvalk">Facebook</a>
-        <a href="https://www.instagram.com/gurutharuva">Instagram</a>
-        <a href="https://www.tiktok.com/@gurutharuva">TikTok</a>
-        <a href="https://www.youtube.com/@Gurutharuva">YouTube</a>
-        <a href="https://www.linkedin.com/in/darshana-godawaththa-%E8%BE%BE%E7%88%BD-7699941b2/">LinkedIn</a>
-      </div>
-      <div class="footer-col">
-        <strong>Contact</strong>
-        <span>gurutharuva@gmail.com</span>
-        <span>+94 71 550 7060</span>
-        <a href="https://wa.me/94715507060" style="color: var(--yellow); font-weight: 700">WhatsApp us</a>
+    <div>
+      <div class="price"><b>LKR 15,000</b><span class="u"><span class="en">for the full programme &middot; 30 seats</span><span class="si">සම්පූර්ණ වැඩසටහනට &middot; ආසන 30</span></span></div>
+      <div class="cta-actions"><a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a></div>
+      <div class="contact">
+        <div>WhatsApp <code>+94 71 550 7060</code><button class="copy" type="button" data-copy="+94 71 550 7060" id="copy-wa"></button></div>
+        <div><span class="en">Email</span><span class="si">විද්‍යුත් තැපෑල</span> <code>gurutharuva@gmail.com</code><button class="copy" type="button" data-copy="gurutharuva@gmail.com" id="copy-mail"></button></div>
+        <div><span class="en">Joining from abroad? Ask on WhatsApp how to pay.</span><span class="si">විදේශයක සිටිනවා නම්, ගෙවන හැටි WhatsApp එකෙන් අහන්න.</span></div>
       </div>
     </div>
-    <p class="copyright">© 2026 Gurutharuva. All rights reserved.</p>
   </div>
+</div>
+
+<div class="mbar"><a class="btn" href="https://wa.me/94715507060" target="_blank" rel="noopener"><span class="en">Book your seat on WhatsApp</span><span class="si">WhatsApp හරහා ආසනය වෙන් කරගන්න</span></a></div>
+
+<footer class="wrap">
+  <span>Gurutharuva &middot; You are the guiding star of your own life.</span>
+  <span class="sin">ජීවිතයට පාර කියන ගුරු තරුව ඔබමයි.</span>
 </footer>
 
-<dialog class="interest" id="interest-dialog" aria-labelledby="interest-title">
-  <form id="interest-form" novalidate>
-    <button class="interest-close" type="button" aria-label="Close" data-close>×</button>
-    <div class="interest-fields">
-      <p class="eyebrow" id="interest-eyebrow">Register interest</p>
-      <h2 id="interest-title">Wealth Code</h2>
-      <p class="interest-lede" id="interest-lede">Leave your details and we'll tell you first when the programme opens.</p>
-      <label for="interest-name">Your name</label>
-      <input id="interest-name" name="name" type="text" autocomplete="name" maxlength="120" required>
-      <label for="interest-whatsapp">WhatsApp number</label>
-      <input id="interest-whatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="07X XXX XXXX" maxlength="30" required>
-      <label for="interest-email">Email <span>(optional)</span></label>
-      <input id="interest-email" name="email" type="email" autocomplete="email" maxlength="200">
-      <div class="interest-when" id="interest-when-wrap" hidden><label for="interest-when">Which days and times suit you? <span>(optional)</span></label>
-      <input id="interest-when" name="when" type="text" maxlength="200" placeholder="e.g. weekday evenings after 7pm"></div>
-      <div class="hp" aria-hidden="true"><label for="interest-website">Website</label><input id="interest-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-      <p class="interest-error" id="interest-error" role="alert" hidden></p>
-      <button class="btn btn--navy" type="submit" id="interest-submit">Register my interest</button>
-      <p class="interest-consent">We'll only use your details for this programme. You can ask us to remove them at any time.</p>
-    </div>
-    <div class="interest-done" id="interest-done" hidden>
-      <h2 id="interest-done-title">Thank you!</h2>
-      <p id="interest-done-text">You're on the list. We'll message you on WhatsApp when the programme opens.</p>
-      <a class="btn btn--yellow" id="interest-done-link" href="#" target="_blank" rel="noopener" hidden>Join the WhatsApp group</a>
-      <button class="btn btn--navy" type="button" data-close>Close</button>
-    </div>
-  </form>
-</dialog>
+<script>
+(function () {
+  var root = document.documentElement;
+  var enBtn = document.getElementById('lang-en');
+  var siBtn = document.getElementById('lang-si');
+  var labels = { en: { copy: 'Copy', done: 'Copied', manual: 'Select and copy' }, si: { copy: 'පිටපත් කරන්න', done: 'පිටපත් විය', manual: 'තෝරා පිටපත් කරන්න' } };
+  function lang() { return root.getAttribute('data-lang') === 'si' ? 'si' : 'en'; }
+  function resetCopy() { document.querySelectorAll('.copy').forEach(function (b) { b.textContent = labels[lang()].copy; }); }
+  function setLang(l, persist) {
+    root.setAttribute('data-lang', l);
+    root.setAttribute('lang', l);
+    enBtn.setAttribute('aria-pressed', l === 'en' ? 'true' : 'false');
+    siBtn.setAttribute('aria-pressed', l === 'si' ? 'true' : 'false');
+    resetCopy();
+    if (persist) {
+      try { localStorage.setItem('bt-start-lang', l); } catch (e) {}
+      try { history.replaceState(null, '', '#' + l); } catch (e) {}
+    }
+  }
+  enBtn.addEventListener('click', function () { setLang('en', true); });
+  siBtn.addEventListener('click', function () { setLang('si', true); });
 
-<script src="../../js/main.js"></script>
+  var start = null;
+  if (location.hash === '#si') start = 'si';
+  else if (location.hash === '#en') start = 'en';
+  else { try { start = localStorage.getItem('bt-start-lang'); } catch (e) {} }
+  setLang(start === 'si' ? 'si' : 'en', false);
+
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var t = b.getAttribute('data-copy');
+      var done = function () { b.textContent = labels[lang()].done; setTimeout(resetCopy, 1600); };
+      var manual = function () {
+        var code = b.parentElement.querySelector('code');
+        try { var r = document.createRange(); r.selectNodeContents(code); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); } catch (e) {}
+        b.textContent = labels[lang()].manual;
+      };
+      try { navigator.clipboard.writeText(t).then(done, manual); } catch (e) { manual(); }
+    });
+  });
+})();
+</script>
+
 </body>
 </html>

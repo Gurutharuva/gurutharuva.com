@@ -539,4 +539,3 @@ h1, h2, h3 { text-wrap: balance; }
 .mentor-more { display: inline-block; margin-top: 20px; font-weight: 700; color: var(--gold-text); }
 @media (max-width: 900px) { .about-photo { position: static; } }
 
-.page-hero .hero-cta { margin: 24px 0 0; }
