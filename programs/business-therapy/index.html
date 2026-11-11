@@ -13,7 +13,7 @@
 :root {
   --bg: #131A2B;
   --surface: #1C2540;
-  --surface-2: #0E1422;
+  --surface-2: #213056;
   --fg: #EDEBE3;
   --fg-soft: #B9BDCB;
   --line: #2E3755;
@@ -57,7 +57,8 @@ a { color: inherit; }
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
 section { padding-block: 72px; }
-section.alt { background: var(--surface-2); }
+/* sections alternate: base navy, then a clearly lighter band. Cards inside the lighter band flip darker so they still stand out. */
+section.alt { background: var(--surface-2); --surface: #131B35; --line: #3B4A78; --fg-soft: #C4C9D8; }
 .eyebrow { font-size: 13px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
 .lede { font-size: 19px; color: var(--fg-soft); max-width: 62ch; }
 h2 { font-size: clamp(30px, 4.4vw, 46px); }
