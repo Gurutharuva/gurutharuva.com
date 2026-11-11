@@ -142,9 +142,9 @@ h2 { font-size: clamp(30px, 4.4vw, 46px); }
 .between b { color: var(--fg); }
 
 /* session shape */
-.shape { display: grid; grid-template-columns: 30fr 60fr 75fr 15fr; gap: 6px; }
+.shape { display: grid; grid-template-columns: 1fr 1.3fr 1fr; gap: 6px; }
 .shape > div { padding: 16px; border-radius: 12px; background: var(--surface); display: grid; gap: 4px; align-content: start; min-width: 0; }
-.shape > div:nth-child(3) { background: var(--accent); color: var(--accent-ink); }
+.shape > div:nth-child(2) { background: var(--accent); color: var(--accent-ink); }
 .shape .n { font-family: var(--bold); font-size: 28px; letter-spacing: .02em; line-height: 1.2; }
 .shape .t { font-size: 14px; line-height: 1.5; }
 .note { margin-top: 16px; color: var(--fg-soft); font-size: 15px; }
@@ -643,14 +643,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 <section class="alt">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow"><span class="en">Inside each 3-hour session</span><span class="si">සෑම පැය 3ක සැසියක් ඇතුළතම</span></div>
+      <div class="eyebrow"><span class="en">Inside each live session</span><span class="si">සෑම සජීවී සැසියක් ඇතුළතම</span></div>
       <h2><span class="en">Every session runs the same way</span><span class="si">සෑම සැසියක්ම එකම විදිහට සිදු වෙනවා</span></h2>
     </div>
     <div class="shape">
-      <div><span class="n">30</span><span class="t"><span class="en">minutes: review last week's work and questions</span><span class="si">මිනිත්තු: පසුගිය සතියේ වැඩ සහ ප්‍රශ්න පරීක්ෂා කිරීම</span></span></div>
-      <div><span class="n">60</span><span class="t"><span class="en">minutes: the teaching, in plain language</span><span class="si">මිනිත්තු: ඉගැන්වීම, සරල භාෂාවෙන්</span></span></div>
-      <div><span class="n">75</span><span class="t"><span class="en">minutes: build your own business, live, with feedback</span><span class="si">මිනිත්තු: ඔයාගේම ව්‍යාපාරය සජීවීව, ප්‍රතිචාර සහිතව ගොඩනඟනවා</span></span></div>
-      <div><span class="n">15</span><span class="t"><span class="en">minutes: commit to your next action</span><span class="si">මිනිත්තු: ඊළඟ ක්‍රියාමාර්ගයට කැපවීම</span></span></div>
+      <div><span class="n">1</span><span class="t"><span class="en">The teaching, in plain language</span><span class="si">ඉගැන්වීම, සරල භාෂාවෙන්</span></span></div>
+      <div><span class="n">2</span><span class="t"><span class="en">Build your own business, live, with feedback</span><span class="si">ඔයාගේම ව්‍යාපාරය සජීවීව, ප්‍රතිචාර සහිතව ගොඩනඟනවා</span></span></div>
+      <div><span class="n">3</span><span class="t"><span class="en">Commit to your next action</span><span class="si">ඊළඟ ක්‍රියාමාර්ගයට කැපවීම</span></span></div>
     </div>
     <p class="note"><span class="en">Most of the time goes to building your own business, not listening.</span><span class="si">වැඩි කාලයක් යන්නේ අහන් ඉන්නවාට නෙවෙයි, ඔයාගේම ව්‍යාපාරය හදන්නයි.</span></p>
   </div>
