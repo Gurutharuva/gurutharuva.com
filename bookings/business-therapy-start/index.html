@@ -134,8 +134,8 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
 <script>
 (function () {
   /* ---- Settings: edit these ---- */
-  var SCRIPT_URL = '';            // Google Apps Script web app URL (see tools/booking-apps-script.gs). Empty = WhatsApp fallback.
-  var WHATSAPP = '94715507060';
+  var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScuQOdetLODjw0tSsgE8FB5s2wNffubyaNxA4xmifijJ36fjg/formResponse';
+  var ENTRY = { name: 'entry.1643909571', phone: 'entry.1715296179', slot: 'entry.1087138180' };
   var DAYS = [
     ['2026-11-30', 'Mon', '30 Nov'], ['2026-12-01', 'Tue', '1 Dec'], ['2026-12-02', 'Wed', '2 Dec'],
     ['2026-12-03', 'Thu', '3 Dec'], ['2026-12-04', 'Fri', '4 Dec']
@@ -206,40 +206,19 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
     if (!name) { $('err').textContent = L.name; $('nm').focus(); return; }
     if (phone.replace(/\D/g, '').length < 9) { $('err').textContent = L.phone; $('ph').focus(); return; }
     var go = $('go');
-
-    if (!SCRIPT_URL) {
-      var msg = 'Hi, I would like to book my 1-to-1 call: ' + picked.label + '. Name: ' + name + '. WhatsApp: ' + phone;
-      window.open('https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
-      finish(name, phone);
-      return;
-    }
-
     go.setAttribute('aria-busy', 'true'); go.disabled = true;
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ date: picked.date, time: picked.time, label: picked.label, name: name, phone: phone })
-    }).then(function (r) { return r.json(); }).then(function (res) {
+    var body = new URLSearchParams();
+    body.set(ENTRY.name, name);
+    body.set(ENTRY.phone, phone);
+    body.set(ENTRY.slot, picked.date + ' ' + picked.time + ' (' + picked.label + ')');
+    fetch(FORM_URL, { method: 'POST', mode: 'no-cors', body: body }).then(function () {
       go.removeAttribute('aria-busy'); go.disabled = false;
-      if (res && res.ok) { finish(name, phone); return; }
-      if (res && res.error === 'taken') { taken[picked.date + '|' + picked.time] = 1; renderTimes(); $('err').textContent = L.taken; return; }
-      if (res && res.error === 'duplicate') { $('err').textContent = L.dup; return; }
-      $('err').textContent = L.fail;
+      finish(name, phone);
     }).catch(function () {
       go.removeAttribute('aria-busy'); go.disabled = false;
       $('err').textContent = L.fail;
     });
   });
-
-  function loadTaken() {
-    if (!SCRIPT_URL) return;
-    fetch(SCRIPT_URL + '?action=taken').then(function (r) { return r.json(); }).then(function (res) {
-      (res.taken || []).forEach(function (k) { taken[k] = 1; });
-      renderTimes();
-    }).catch(function () {
-      var t = $('toast'); t.textContent = T[lang()].load; t.classList.add('on');
-    });
-  }
 
   function setLang(l, persist) {
     root.setAttribute('data-lang', l); root.setAttribute('lang', l);
@@ -255,7 +234,6 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
   else { try { start = localStorage.getItem('bt-start-lang'); } catch (e) {} }
   render();
   setLang(start === 'si' ? 'si' : 'en', false);
-  loadTaken();
 })();
 </script>
 </body>
