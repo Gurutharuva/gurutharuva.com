@@ -2,7 +2,7 @@
  * Business Therapy START: 1-to-1 booking backend.
  * Paste into Extensions > Apps Script in the booking Google Sheet,
  * then Deploy > New deployment > Web app (Execute as: Me, Access: Anyone).
- * Put the web app URL into SCRIPT_URL in programs/business-therapy/book/index.html.
+ * Put the web app URL into SCRIPT_URL in bookings/business-therapy-start/index.html.
  */
 var SHEET_NAME = 'Bookings';
 var HEADERS = ['Booked at', 'Date', 'Time', 'Slot', 'Name', 'WhatsApp', 'Called', 'Notes'];
