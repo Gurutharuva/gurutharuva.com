@@ -5,6 +5,7 @@ permalink: /journal/:title/
 markdown: kramdown
 exclude:
   - README.md
+  - tools
 defaults:
   - scope:
       path: ""
