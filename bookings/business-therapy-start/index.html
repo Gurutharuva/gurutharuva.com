@@ -135,6 +135,7 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
 (function () {
   /* ---- Settings: edit these ---- */
   var FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScuQOdetLODjw0tSsgE8FB5s2wNffubyaNxA4xmifijJ36fjg/formResponse';
+  var TAKEN_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRAzfeqpVNMhKNb5v307QbAU9YwApVThxIu09Gin7etWmFO10x_ISjHcqQqJnHUDss62B4FSMa7P4Qm/pub?gid=2003648474&single=true&output=csv';
   var ENTRY = { name: 'entry.1643909571', phone: 'entry.1715296179', slot: 'entry.1087138180' };
   var DAYS = [
     ['2026-11-30', 'Mon', '30 Nov'], ['2026-12-01', 'Tue', '1 Dec'], ['2026-12-02', 'Wed', '2 Dec'],
@@ -220,6 +221,16 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
     });
   });
 
+  function loadTaken() {
+    fetch(TAKEN_URL + '&t=' + Date.now()).then(function (r) { return r.text(); }).then(function (txt) {
+      txt.split(/\r?\n/).forEach(function (line) {
+        var m = line.replace(/"/g, '').trim().match(/^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2})$/);
+        if (m) taken[m[1] + '|' + m[2]] = 1;
+      });
+      renderTimes();
+    }).catch(function () {});
+  }
+
   function setLang(l, persist) {
     root.setAttribute('data-lang', l); root.setAttribute('lang', l);
     $('lang-en').setAttribute('aria-pressed', l === 'en'); $('lang-si').setAttribute('aria-pressed', l === 'si');
@@ -234,6 +245,7 @@ footer { padding: 22px 18px; text-align: center; font-size: 13px; color: var(--f
   else { try { start = localStorage.getItem('bt-start-lang'); } catch (e) {} }
   render();
   setLang(start === 'si' ? 'si' : 'en', false);
+  loadTaken();
 })();
 </script>
 </body>
