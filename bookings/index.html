@@ -3,33 +3,49 @@ layout: default
 title: Bookings
 summary: Book your 1-to-1 call with Darshana Godawaththa.
 css: /css/bookings.css
+js: /js/bookings.js
 ---
 <section class="page-hero">
   <div class="wrap">
-    <p class="eyebrow">Bookings</p>
+    <p class="eyebrow">Business Therapy: START</p>
     <h1>Book your <em>1-to-1 call.</em></h1>
-    <p class="intro">Pick a day and a time, leave your name and WhatsApp number, and Darshana will call you.</p>
-    <p class="intro si" lang="si">දවසක් සහ වෙලාවක් තෝරලා, ඔයාගේ නම සහ WhatsApp අංකය දෙන්න. Darshana ඔයාට call කරනවා.</p>
+    <p class="intro">25 minutes with Darshana, Mon 30 Nov to Fri 4 Dec. Pick a day and a time, leave your name and WhatsApp number, and we'll call you.</p>
+    <p class="intro si" lang="si">Darshana එක්ක මිනිත්තු 25ක් (නොවැ 30 සිට දෙසැ 4 දක්වා). දවසක් සහ වෙලාවක් තෝරලා, ඔයාගේ නම සහ WhatsApp අංකය දෙන්න. අපි call කරනවා.</p>
   </div>
 </section>
 
-<section class="band">
-  <div class="wrap">
-    <div class="book-grid">
-      <a class="book-card" href="{{ "/bookings/business-therapy-start/" | relative_url }}">
-        <p class="eyebrow">Business Therapy: START</p>
-        <h2>1-to-1 coaching call</h2>
-        <p>A private 25-minute call with Darshana for students enrolled in the START batch.</p>
-        <p class="si" lang="si">START batch එකේ සිසුන්ට Darshana එක්ක මිනිත්තු 25ක පෞද්ගලික call එකක්.</p>
-        <ul class="book-meta">
-          <li>25 minutes</li>
-          <li>Mon to Fri</li>
-          <li>6:30 to 9:30 pm</li>
-          <li>Sri Lanka time</li>
-        </ul>
-        <span class="btn btn--yellow">Pick my slot</span>
-      </a>
-    </div>
-    <p class="book-note">Booking is open to enrolled students only. Not enrolled yet? <a href="{{ "/programs/business-therapy/" | relative_url }}">See Business Therapy START</a> or <a href="https://wa.me/94715507060">message us on WhatsApp</a>.</p>
+<section class="band band--navy bk-band">
+  <div class="wrap bk">
+    <p class="bk-label">1. Pick a day <span class="si" lang="si">· දවසක් තෝරන්න</span></p>
+    <div class="bk-days" id="bk-days"></div>
+
+    <p class="bk-label">2. Pick a time <span class="si" lang="si">· වෙලාවක් තෝරන්න</span></p>
+    <div class="bk-times" id="bk-times"></div>
+
+    <p class="bk-note">Sri Lanka time. Only for enrolled students. Can't make your slot? <a href="https://wa.me/94715507060">Message us on WhatsApp</a> before the day.</p>
+    <p class="bk-note si" lang="si">ශ්‍රී ලංකා වේලාවෙන්. ලියාපදිංචි වුණු සිසුන්ට පමණයි.</p>
   </div>
 </section>
+
+<dialog id="bk-dlg" class="bk-dlg" aria-labelledby="bk-when">
+  <form id="bk-form" method="dialog" novalidate>
+    <div class="bk-dlg-head">
+      <div><p class="k">Your slot <span class="si" lang="si">· ඔයාගේ වෙලාව</span></p><p class="v" id="bk-when"></p></div>
+      <button class="bk-x" type="button" id="bk-x" aria-label="Close">&times;</button>
+    </div>
+    <label for="bk-nm">Your name <span class="si" lang="si">· ඔයාගේ නම</span></label>
+    <input id="bk-nm" type="text" autocomplete="name" placeholder="Nimal Perera">
+    <label for="bk-ph">WhatsApp number <span class="si" lang="si">· WhatsApp අංකය</span></label>
+    <input id="bk-ph" type="tel" autocomplete="tel" inputmode="tel" placeholder="+94 77 123 4567">
+    <p class="bk-err" id="bk-err" role="alert"></p>
+    <button class="btn btn--yellow bk-go" type="submit" id="bk-go">Confirm my slot</button>
+  </form>
+  <div class="bk-done" id="bk-done" hidden>
+    <div class="tick" aria-hidden="true">&#10003;</div>
+    <h2>You're booked</h2>
+    <p class="when" id="bk-done-when"></p>
+    <p>Keep your phone on. We'll call you on WhatsApp at this time.</p>
+    <p class="si" lang="si">ෆෝන් එක on කරගෙන ඉන්න. ඒ වෙලාවට අපි WhatsApp call එකක් ගන්නවා.</p>
+    <button class="btn bk-ghost" type="button" id="bk-close">Close</button>
+  </div>
+</dialog>
