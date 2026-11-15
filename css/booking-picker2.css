@@ -38,3 +38,7 @@
 .bk-done .when { font-weight: 700; color: var(--yellow); margin: 0 0 8px; }
 .bk-done p { margin: 0 0 6px; color: var(--on-navy-soft); }
 @media (max-width: 480px) { .bk-days { gap: 6px; } }
+
+.bk-tz { margin: -4px 0 14px; font-size: 14px; color: var(--yellow); }
+.bk-tz strong { font-weight: 700; }
+.bk-tz .si { color: var(--on-navy-soft); }
