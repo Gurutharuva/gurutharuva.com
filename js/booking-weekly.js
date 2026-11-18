@@ -103,7 +103,7 @@
     fail: "Couldn't save your booking. Try again. · වෙන් කිරීම සුරකින්න බැරි වුණා. නැවත උත්සාහ කරන්න.",
     not_approved: 'This number isn\'t registered for the class. <a href="' + WA + '">Message us on WhatsApp</a>.<br><span class="si" lang="si">මේ අංකය පන්තියට ලියාපදිංචි වෙලා නෑ. <a href="' + WA + '">WhatsApp එකෙන් පණිවුඩයක්</a> එවන්න.</span>',
     taken: 'Someone just took that slot. Pick another one. · ඒ වෙලාව දැන් වෙන් වුණා. වෙන එකක් තෝරන්න.',
-    closed: 'Booking is closed right now. It opens Saturday 11 pm (Sri Lanka time). · වෙන් කිරීම දැන් වසා ඇත. සෙනසුරාදා රාත්‍රී 11ට (ශ්‍රී ලංකාවේ වෙලාව) විවෘත වේ.',
+    closed: 'Booking is closed right now. It opens Saturday 11 pm (Sri Lanka time). · වෙන් කිරීම දැන් වසා ඇත. සෙනසුරාදා රාත්‍රී 11ට (ශ්‍රී ලංකා වේලාව) විවෘත වේ.',
     past: 'That time has already passed. Pick another one. · ඒ වෙලාව ඉවරයි. වෙන එකක් තෝරන්න.'
   };
 
