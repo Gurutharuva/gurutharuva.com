@@ -2,30 +2,47 @@
 layout: default
 title: Bookings
 summary: Book your 1-to-1 call with Darshana Godawaththa.
-css: /css/booking-picker2.css
-js: /js/booking-picker.js
+css: /css/booking-weekly.css
+js: /js/booking-weekly.js
 ---
 <section class="page-hero">
   <div class="wrap">
     <p class="eyebrow">Business Therapy: START</p>
     <h1>Book your <em>1-to-1 call.</em></h1>
-    <p class="intro">25 minutes with Darshana, Mon 30 Nov to Fri 4 Dec. Pick a day and a time, leave your name and WhatsApp number, and we'll call you.</p>
-    <p class="intro si" lang="si">Darshana එක්ක මිනිත්තු 25ක් (නොවැ 30 සිට දෙසැ 4 දක්වා). දවසක් සහ වෙලාවක් තෝරලා, ඔයාගේ නම සහ WhatsApp අංකය දෙන්න. අපි call කරනවා.</p>
+    <p class="intro">A free 25-minute call with Darshana, for students enrolled in the program. Pick a day and a time, leave your name and WhatsApp number (the one you registered with), and we'll call you. New slots open every Saturday at 11 pm, Sri Lanka time.</p>
+    <p class="intro si" lang="si">වැඩසටහනට ලියාපදිංචි වුණු සිසුන්ට Darshana එක්ක නොමිලේ මිනිත්තු 25ක call එකක්. දවසක් සහ වෙලාවක් තෝරලා, ලියාපදිංචි වුණු WhatsApp අංකය සහ ඔයාගේ නම දෙන්න. අපි call කරනවා. අලුත් වෙලාවන් සෑම සෙනසුරාදා රාත්‍රී 11ට (ශ්‍රී ලංකා වේලාව) විවෘත වෙනවා.</p>
   </div>
 </section>
 
 <section class="band band--navy bk-band">
   <div class="wrap bk">
-    <p class="bk-label">1. Pick a day <span class="si" lang="si">· දවසක් තෝරන්න</span></p>
-    <div class="bk-days" id="bk-days"></div>
+    <p id="bk-loading" class="bk-note">Loading this week's slots… · මේ සතියේ වෙලාවන් ලෝඩ් වෙනවා…</p>
 
-    <p class="bk-label">2. Pick a time <span class="si" lang="si">· වෙලාවක් තෝරන්න</span></p>
-    <p class="bk-tz"><strong>All times are Sri Lanka time (GMT+5:30).</strong> <span class="si" lang="si">සියලු වේලාවන් ශ්‍රී ලංකා වේලාවෙන් (GMT+5:30).</span></p>
-    <div class="bk-times" id="bk-times"></div>
-
-    <p class="bk-note">Only for enrolled students. Studying from abroad? <a href="https://wa.me/94715507060">Send us a private WhatsApp message</a> and we'll find a time that suits your country.</p>
-    <p class="bk-note si" lang="si">ලියාපදිංචි වුණු සිසුන්ට පමණයි. ඔයා විදේශයක ඉන්නවා නම්, <a href="https://wa.me/94715507060">WhatsApp එකෙන් පෞද්ගලික පණිවුඩයක්</a> එවන්න. ඔයාගේ රටට ගැලපෙන වෙලාවක් අපි හොයමු.</p>
+    <div id="bk-closed" class="bk-card" hidden>
+      <h2>Booking is closed right now</h2>
+      <p>New slots open every <strong>Saturday at 11 pm, Sri Lanka time</strong>. Come back then.</p>
+      <p class="si" lang="si">වෙන් කිරීම දැනට වසා ඇත. අලුත් වෙලාවන් සෑම <strong>සෙනසුරාදා රාත්‍රී 11ට (ශ්‍රී ලංකා වේලාව)</strong> විවෘත වෙනවා.</p>
+      <p>Studying from abroad? <a href="https://wa.me/94715507060">Message us privately on WhatsApp</a>.</p>
     </div>
+
+    <div id="bk-fail" class="bk-card" hidden>
+      <h2>Couldn't load the slots</h2>
+      <p>Please refresh the page, or <a href="https://wa.me/94715507060">message us on WhatsApp</a>.</p>
+      <p class="si" lang="si">පිටුව refresh කරන්න, නැත්නම් <a href="https://wa.me/94715507060">WhatsApp එකෙන්</a> පණිවුඩයක් එවන්න.</p>
+    </div>
+
+    <div id="bk-picker" hidden>
+      <p class="bk-label">1. Pick a day <span class="si" lang="si">· දවසක් තෝරන්න</span></p>
+      <div class="bk-days" id="bk-days"></div>
+
+      <p class="bk-label">2. Pick a time <span class="si" lang="si">· වෙලාවක් තෝරන්න</span></p>
+      <p class="bk-tz"><strong>All times are Sri Lanka time (GMT+5:30).</strong> <span class="si" lang="si">සියලු වේලාවන් ශ්‍රී ලංකා වේලාවෙන් (GMT+5:30).</span></p>
+      <div class="bk-times" id="bk-times"></div>
+
+      <p class="bk-note">Only for enrolled students, and these times are Sri Lanka time. Studying from abroad? <a href="https://wa.me/94715507060">Send us a private WhatsApp message</a> and we'll find a time that suits your country.</p>
+      <p class="bk-note si" lang="si">ලියාපදිංචි වුණු සිසුන්ට පමණයි. ඔයා විදේශයක ඉන්නවා නම්, <a href="https://wa.me/94715507060">WhatsApp එකෙන් පෞද්ගලික පණිවුඩයක්</a> එවන්න. ඔයාගේ රටට ගැලපෙන වෙලාවක් අපි හොයමු.</p>
+    </div>
+  </div>
 </section>
 
 <dialog id="bk-dlg" class="bk-dlg" aria-labelledby="bk-when">

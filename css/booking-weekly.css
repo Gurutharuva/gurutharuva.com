@@ -42,3 +42,17 @@
 .bk-tz { margin: -4px 0 14px; font-size: 14px; color: var(--yellow); }
 .bk-tz strong { font-weight: 700; }
 .bk-tz .si { color: var(--on-navy-soft); }
+
+.bk-group { grid-column: 1 / -1; margin: 10px 0 0; font-size: 13px; font-weight: 700; color: var(--on-navy-soft); letter-spacing: .04em; }
+.bk-group:first-child { margin-top: 0; }
+.bk-days { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.bk-times { grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); }
+.bk-time { font-size: 17px; min-height: 54px; }
+.bk-card { background: var(--navy-raised); border-radius: 18px; padding: 24px; box-shadow: inset 0 0 0 1px var(--line-navy); }
+.bk-card h2 { margin: 0 0 8px; font-family: var(--serif); font-weight: 400; font-size: 26px; }
+.bk-card p { margin: 0 0 8px; color: var(--on-navy-soft); }
+.bk-card a { color: var(--yellow); }
+.bk-err a { color: var(--yellow); }
+.bk-err .si { color: #F2A29B; }
+.bk-err { min-height: 22px; }
+@media (max-width: 480px) { .bk-times { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bk-day { font-size: 15px; } }
