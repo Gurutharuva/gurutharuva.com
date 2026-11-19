@@ -56,3 +56,12 @@
 .bk-err .si { color: #F2A29B; }
 .bk-err { min-height: 22px; }
 @media (max-width: 480px) { .bk-times { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bk-day { font-size: 15px; } }
+
+@media (max-width: 520px) {
+  .bk-days { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .bk-day { min-height: 64px; font-size: 17px; }
+  .bk-day small { font-size: 13px; }
+  .bk-time { min-height: 56px; font-size: 18px; }
+  .bk-dlg { padding: 20px; }
+  .bk-dlg input { font-size: 16px; }
+}
