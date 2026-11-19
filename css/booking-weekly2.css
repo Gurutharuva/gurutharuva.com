@@ -1,6 +1,6 @@
 /* Bookings page: day and time picker */
 .bk-band { padding-top: 0; padding-bottom: 96px; }
-.bk { max-width: 640px; margin-inline: 0; }
+.bk > * { max-width: 640px; }
 .bk .si, .bk-dlg .si, .page-hero .si { font-family: var(--sinhala); color: var(--on-navy-soft); }
 .page-hero p.si { margin-top: 12px; font-size: 17px; line-height: 1.8; }
 .bk-label { margin: 0 0 12px; font-size: 14px; font-weight: 700; color: var(--on-navy-soft); }
